@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCP Professional Cloud Security Engineer - Practice Exam</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #34a853 100%);
+        }
+        .question-card {
+            transition: all 0.3s ease;
+        }
+        .option-btn {
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover:not(.selected):not(.correct):not(.incorrect) {
+            transform: translateX(8px);
+            background-color: #e8f0fe;
+        }
+        .correct {
+            background-color: #d4edda !important;
+            border-color: #34a853 !important;
+        }
+        .incorrect {
+            background-color: #f8d7da !important;
+            border-color: #ea4335 !important;
+        }
+        .selected {
+            border-color: #1a73e8 !important;
+            background-color: #e8f0fe !important;
+        }
+        .domain-tag {
+            font-size: 0.7rem;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold">GCP Professional Cloud Security Engineer</h1>
+                    <p class="text-blue-100 mt-1">Practice Exam - 105 Questions</p>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <img src="https://www.gstatic.com/devrel-devsite/prod/v0e0f589edd85502a40d78d7d0825db8ea5ef3b99ab4070381ee86977c9168730/cloud/images/cloud-logo.svg" alt="Google Cloud" class="h-10 bg-white rounded p-1">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Start Screen -->
+        <div id="startScreen" class="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">GCP Security Engineer Practice Exam</h2>
+                <p class="text-gray-600">Test your knowledge across all 5 exam domains</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-50 rounded-xl p-5">
+                    <h3 class="font-semibold text-gray-800 mb-3">Exam Domains</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>Section 1: Configuring Access (25%)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>Section 2: Boundary Protection (22%)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>Section 3: Data Protection (23%)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Section 4: Managing Operations (19%)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>Section 5: Compliance (11%)</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-5">
+                    <h3 class="font-semibold text-gray-800 mb-3">Exam Details</h3>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>📝 105 Practice Questions</li>
+                        <li>⏱️ Recommended: 2 hours</li>
+                        <li>✅ Passing Score: 70%</li>
+                        <li>📖 Detailed Explanations</li>
+                        <li>🎯 Real Exam Format</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Mode:</label>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button onclick="setMode('all')" class="mode-btn px-4 py-3 border-2 border-blue-500 bg-blue-50 text-blue-700 rounded-lg font-medium" data-mode="all">All Questions</button>
+                    <button onclick="setMode('domain')" class="mode-btn px-4 py-3 border-2 border-gray-200 rounded-lg font-medium hover:border-blue-300" data-mode="domain">By Domain</button>
+                    <button onclick="setMode('random')" class="mode-btn px-4 py-3 border-2 border-gray-200 rounded-lg font-medium hover:border-blue-300" data-mode="random">Random 50</button>
+                    <button onclick="setMode('missed')" class="mode-btn px-4 py-3 border-2 border-gray-200 rounded-lg font-medium hover:border-blue-300" data-mode="missed">Review Missed</button>
+                </div>
+            </div>
+
+            <div id="domainSelector" class="hidden mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Domain:</label>
+                <select id="domainSelect" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none">
+                    <option value="1">Section 1: Configuring Access</option>
+                    <option value="2">Section 2: Boundary Protection</option>
+                    <option value="3">Section 3: Data Protection</option>
+                    <option value="4">Section 4: Managing Operations</option>
+                    <option value="5">Section 5: Compliance</option>
+                </select>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors text-lg">
+                Start Practice Exam
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="hidden">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Question Panel -->
+                <div class="flex-1">
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                        <!-- Question Header -->
+                        <div class="bg-gray-50 px-6 py-4 border-b flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span id="questionNumber" class="text-lg font-bold text-gray-800">Question 1</span>
+                                <span id="domainBadge" class="domain-tag px-2 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">Section 1</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="toggleBookmark()" id="bookmarkBtn" class="p-2 hover:bg-gray-200 rounded-lg transition-colors">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Question Content -->
+                        <div class="p-6">
+                            <p id="questionText" class="text-lg text-gray-800 mb-6 leading-relaxed"></p>
+                            
+                            <div id="optionsContainer" class="space-y-3"></div>
+                        </div>
+
+                        <!-- Explanation Panel -->
+                        <div id="explanationPanel" class="hidden px-6 pb-6">
+                            <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-green-800 mb-2">Explanation</h4>
+                                        <p id="explanationText" class="text-green-700 text-sm leading-relaxed"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="px-6 py-4 bg-gray-50 border-t flex items-center justify-between">
+                            <button onclick="prevQuestion()" id="prevBtn" class="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+                                ← Previous
+                            </button>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="submitAnswer()" id="submitBtn" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                    Check Answer
+                                </button>
+                            </div>
+                            <button onclick="nextQuestion()" id="nextBtn" class="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:w-80">
+                    <!-- Progress Card -->
+                    <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-4">Progress</h3>
+                        <div class="flex items-center justify-center mb-4">
+                            <div class="relative">
+                                <svg class="w-32 h-32 progress-ring">
+                                    <circle cx="64" cy="64" r="56" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                                    <circle id="progressCircle" cx="64" cy="64" r="56" stroke="#1a73e8" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="352"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <span id="progressPercent" class="text-2xl font-bold text-gray-800">0%</span>
+                                        <p class="text-xs text-gray-500">Complete</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 text-center">
+                            <div class="bg-green-50 rounded-lg p-3">
+                                <p id="correctCount" class="text-xl font-bold text-green-600">0</p>
+                                <p class="text-xs text-green-600">Correct</p>
+                            </div>
+                            <div class="bg-red-50 rounded-lg p-3">
+                                <p id="incorrectCount" class="text-xl font-bold text-red-600">0</p>
+                                <p class="text-xs text-red-600">Incorrect</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-3">
+                                <p id="remainingCount" class="text-xl font-bold text-gray-600">0</p>
+                                <p class="text-xs text-gray-600">Remaining</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Navigator -->
+                    <div class="bg-white rounded-2xl shadow-xl p-6">
+                        <h3 class="font-semibold text-gray-800 mb-4">Questions</h3>
+                        <div id="questionNav" class="grid grid-cols-5 gap-2 max-h-64 overflow-y-auto scrollbar-thin"></div>
+                        <div class="mt-4 pt-4 border-t">
+                            <button onclick="endQuiz()" class="w-full py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 transition-colors font-medium">
+                                End Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden">
+            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <div id="resultIcon" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4"></div>
+                    <h2 id="resultTitle" class="text-3xl font-bold mb-2"></h2>
+                    <p id="resultSubtitle" class="text-gray-600"></p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-blue-50 rounded-xl p-5 text-center">
+                        <p id="finalScore" class="text-3xl font-bold text-blue-600">0%</p>
+                        <p class="text-sm text-blue-600">Final Score</p>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-5 text-center">
+                        <p id="finalCorrect" class="text-3xl font-bold text-green-600">0</p>
+                        <p class="text-sm text-green-600">Correct</p>
+                    </div>
+                    <div class="bg-red-50 rounded-xl p-5 text-center">
+                        <p id="finalIncorrect" class="text-3xl font-bold text-red-600">0</p>
+                        <p class="text-sm text-red-600">Incorrect</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-5 text-center">
+                        <p id="finalTotal" class="text-3xl font-bold text-gray-600">0</p>
+                        <p class="text-sm text-gray-600">Total</p>
+                    </div>
+                </div>
+
+                <!-- Domain Breakdown -->
+                <div class="mb-8">
+                    <h3 class="font-semibold text-gray-800 mb-4">Performance by Domain</h3>
+                    <div id="domainResults" class="space-y-3"></div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="reviewAnswers()" class="flex-1 py-3 border-2 border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition-colors font-semibold">
+                        Review Answers
+                    </button>
+                    <button onclick="restartQuiz()" class="flex-1 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-semibold">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Question Bank - 105 Questions across 5 domains
+        const questions = [
+            // SECTION 1: CONFIGURING ACCESS (26 questions - ~25%)
+            {
+                id: 1,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Your organization wants to synchronize user identities from on-premises Active Directory to Google Cloud. Which service should you use?",
+                options: [
+                    "A. Cloud Identity Premium",
+                    "B. Google Cloud Directory Sync (GCDS)",
+                    "C. Workload Identity Federation",
+                    "D. Identity-Aware Proxy"
+                ],
+                correctAnswer: 1,
+                explanation: "Google Cloud Directory Sync (GCDS) is specifically designed to synchronize users, groups, and other data from your Microsoft Active Directory or LDAP server to your Cloud Identity or Google Workspace account. It's a one-way sync that ensures your Google Cloud identities match your on-premises directory."
+            },
+            {
+                id: 2,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "A super administrator account in Cloud Identity should be protected using which best practice?",
+                options: [
+                    "A. Use a shared password among trusted administrators",
+                    "B. Create multiple super admin accounts for redundancy only",
+                    "C. Enable 2-step verification with hardware security keys",
+                    "D. Store the password in a Cloud Storage bucket with restricted access"
+                ],
+                correctAnswer: 2,
+                explanation: "Super administrator accounts should be protected with the strongest form of 2-step verification available - hardware security keys. These physical devices provide phishing-resistant authentication that cannot be intercepted like SMS or app-based codes. Google strongly recommends hardware keys for all privileged accounts."
+            },
+            {
+                id: 3,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Your company needs to grant a third-party contractor access to specific GCP resources without creating a Google account for them. What should you use?",
+                options: [
+                    "A. Service account keys",
+                    "B. Workforce Identity Federation",
+                    "C. Cloud Identity free tier",
+                    "D. Guest user invitation"
+                ],
+                correctAnswer: 1,
+                explanation: "Workforce Identity Federation allows external users to access GCP resources using their existing corporate identity provider (like Azure AD, Okta, or any SAML/OIDC provider) without needing a Google account. This is ideal for contractors who already have identities in their own organization's IdP."
+            },
+            {
+                id: 4,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Which of the following is a best practice for managing service accounts?",
+                options: [
+                    "A. Use the default Compute Engine service account for all workloads",
+                    "B. Create one service account per application with minimum required permissions",
+                    "C. Share service account keys across multiple applications for consistency",
+                    "D. Grant the Editor role to all service accounts to simplify permission management"
+                ],
+                correctAnswer: 1,
+                explanation: "Best practice is to create dedicated service accounts per application with only the minimum permissions required (principle of least privilege). Default service accounts often have excessive permissions, and sharing service accounts or granting broad roles violates security best practices and makes auditing difficult."
+            },
+            {
+                id: 5,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Your application running on GKE needs to access Cloud Storage without using service account keys. Which feature should you configure?",
+                options: [
+                    "A. Cloud NAT",
+                    "B. Workload Identity",
+                    "C. Private Google Access",
+                    "D. VPC Service Controls"
+                ],
+                correctAnswer: 1,
+                explanation: "Workload Identity is the recommended way for GKE workloads to access Google Cloud services. It allows Kubernetes service accounts to impersonate IAM service accounts, eliminating the need to manage and store service account keys. This provides better security through keyless authentication."
+            },
+            {
+                id: 6,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "You need to grant temporary elevated access to a developer for troubleshooting. The access should automatically expire after 2 hours. What should you use?",
+                options: [
+                    "A. IAM Conditions with time-based expressions",
+                    "B. Privileged Access Manager",
+                    "C. Organization Policy constraints",
+                    "D. Custom IAM role with expiration"
+                ],
+                correctAnswer: 1,
+                explanation: "Privileged Access Manager (PAM) enables just-in-time privileged access management. It allows you to grant temporary, time-bound elevated access that automatically expires after a specified duration. This is ideal for troubleshooting scenarios where permanent elevated access is not appropriate."
+            },
+            {
+                id: 7,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "What is the correct hierarchy for GCP resources from top to bottom?",
+                options: [
+                    "A. Project → Folder → Organization → Resource",
+                    "B. Organization → Folder → Project → Resource",
+                    "C. Folder → Organization → Project → Resource",
+                    "D. Organization → Project → Folder → Resource"
+                ],
+                correctAnswer: 1,
+                explanation: "The correct GCP resource hierarchy is: Organization (top) → Folders → Projects → Resources (bottom). IAM policies inherit downward through this hierarchy, meaning policies set at the organization level apply to all folders, projects, and resources beneath it."
+            },
+            {
+                id: 8,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "You want to prevent users from creating Cloud Storage buckets with uniform bucket-level access disabled. What should you configure?",
+                options: [
+                    "A. IAM deny policy",
+                    "B. Organization policy constraint",
+                    "C. VPC Service Controls",
+                    "D. Cloud Armor security policy"
+                ],
+                correctAnswer: 1,
+                explanation: "Organization policy constraints are used to enforce organization-wide rules. The constraint 'constraints/storage.uniformBucketLevelAccess' can be used to require that all new buckets use uniform bucket-level access. This is enforced at the organization or folder level and prevents non-compliant configurations."
+            },
+            {
+                id: 9,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Which IAM role follows the principle of least privilege for a user who only needs to view logs in Cloud Logging?",
+                options: [
+                    "A. roles/logging.admin",
+                    "B. roles/logging.viewer",
+                    "C. roles/editor",
+                    "D. roles/logging.logWriter"
+                ],
+                correctAnswer: 1,
+                explanation: "roles/logging.viewer provides read-only access to logs, which is exactly what's needed to view logs. roles/logging.admin has full access including write and delete permissions, roles/editor is too broad, and roles/logging.logWriter only allows writing logs, not viewing them."
+            },
+            {
+                id: 10,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "A workload running on AWS needs to access resources in GCP without using long-lived credentials. What should you configure?",
+                options: [
+                    "A. Service account key stored in AWS Secrets Manager",
+                    "B. Workload Identity Federation with AWS as the identity provider",
+                    "C. VPN connection between AWS and GCP",
+                    "D. OAuth 2.0 client credentials"
+                ],
+                correctAnswer: 1,
+                explanation: "Workload Identity Federation allows workloads running on AWS (and other cloud providers) to access GCP resources using their native cloud credentials (like AWS IAM roles). This eliminates the need for service account keys and provides a more secure, keyless authentication mechanism."
+            },
+            {
+                id: 11,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Which mechanism should you use to automatically disable unused service accounts?",
+                options: [
+                    "A. Cloud Scheduler with a Cloud Function",
+                    "B. Policy Intelligence recommendations",
+                    "C. IAM Recommender with automated enforcement",
+                    "D. Organization policy with service account constraints"
+                ],
+                correctAnswer: 1,
+                explanation: "Policy Intelligence provides IAM Recommender which analyzes service account usage and generates recommendations for unused or over-privileged service accounts. While it provides recommendations, you can set up automation using these recommendations to disable unused service accounts."
+            },
+            {
+                id: 12,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "You need to implement SSO with your organization's Okta identity provider for Google Cloud Console access. Which protocol should you configure?",
+                options: [
+                    "A. LDAP",
+                    "B. SAML 2.0",
+                    "C. Kerberos",
+                    "D. OAuth 1.0"
+                ],
+                correctAnswer: 1,
+                explanation: "SAML 2.0 is the standard protocol for implementing SSO with external identity providers like Okta for Google Cloud Console access. Google Cloud Identity supports SAML 2.0 for federated authentication, allowing users to authenticate using their corporate credentials."
+            },
+            {
+                id: 13,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "How can you allow a user to impersonate a service account without giving them the Service Account Token Creator role directly on the service account?",
+                options: [
+                    "A. Grant them the Owner role on the project",
+                    "B. Use IAM Conditions to limit impersonation scope",
+                    "C. Add them to a group that has the Service Account Token Creator role",
+                    "D. Create a custom role without the impersonation permission"
+                ],
+                correctAnswer: 2,
+                explanation: "Managing permissions through groups is a best practice. By adding the user to a group that has the Service Account Token Creator role on the service account, you grant impersonation ability indirectly. This simplifies management and follows the principle of using groups for access control."
+            },
+            {
+                id: 14,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "What is the purpose of IAM deny policies?",
+                options: [
+                    "A. To grant permissions to specific principals",
+                    "B. To override allow policies and explicitly block access",
+                    "C. To replace organization policies",
+                    "D. To create custom IAM roles"
+                ],
+                correctAnswer: 1,
+                explanation: "IAM deny policies explicitly block access and take precedence over allow policies. They are used when you need to ensure certain principals cannot access specific resources, regardless of what allow policies might grant them. Deny policies are evaluated before allow policies."
+            },
+            {
+                id: 15,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Your organization requires that all service account keys be rotated every 90 days. How can you enforce this?",
+                options: [
+                    "A. Create a Cloud Function that rotates keys automatically",
+                    "B. Use organization policy to set key expiration",
+                    "C. Configure key expiration in IAM settings",
+                    "D. Avoid using service account keys and use Workload Identity instead"
+                ],
+                correctAnswer: 3,
+                explanation: "The best practice is to avoid using service account keys altogether. Instead, use Workload Identity (for GKE), attached service accounts (for Compute Engine), or Workload Identity Federation (for external workloads). This eliminates the need for key rotation and reduces security risks."
+            },
+            {
+                id: 16,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Which feature allows you to restrict API access based on user device security posture?",
+                options: [
+                    "A. VPC Service Controls",
+                    "B. Access Context Manager",
+                    "C. Cloud Armor",
+                    "D. Binary Authorization"
+                ],
+                correctAnswer: 1,
+                explanation: "Access Context Manager allows you to define access levels based on attributes like device security posture, IP address, and identity. These access levels can then be used with VPC Service Controls or IAM Conditions to restrict access to resources based on the context of the request."
+            },
+            {
+                id: 17,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "You need to grant a partner organization access to a specific BigQuery dataset. The partner uses Azure AD for identity. What approach should you take?",
+                options: [
+                    "A. Create Google accounts for each partner user",
+                    "B. Configure Workforce Identity Federation with Azure AD",
+                    "C. Share service account keys with the partner",
+                    "D. Make the dataset public"
+                ],
+                correctAnswer: 1,
+                explanation: "Workforce Identity Federation allows you to federate Azure AD (and other IdPs) with Google Cloud, allowing partner users to access GCP resources using their existing Azure AD credentials. This is more secure than creating Google accounts or sharing credentials."
+            },
+            {
+                id: 18,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "What happens to IAM permissions when you move a project from one folder to another?",
+                options: [
+                    "A. All project-level permissions are deleted",
+                    "B. The project inherits policies from the new parent folder",
+                    "C. Permissions from the old folder continue to apply",
+                    "D. The project loses all organization-level policies"
+                ],
+                correctAnswer: 1,
+                explanation: "When you move a project to a different folder, it inherits policies from its new parent folder. The project retains its own project-level policies, but inherited policies change to reflect the new location in the resource hierarchy."
+            },
+            {
+                id: 19,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Which approach should you use to give developers read access to production logs during business hours only?",
+                options: [
+                    "A. Create a custom role with time restrictions",
+                    "B. Use IAM Conditions with a time-based expression",
+                    "C. Manually add and remove permissions each day",
+                    "D. Use Privileged Access Manager for each access request"
+                ],
+                correctAnswer: 1,
+                explanation: "IAM Conditions allow you to add conditional expressions to role bindings, including time-based conditions. You can specify that a binding is only effective during certain hours, days, or date ranges, making this ideal for business-hours-only access."
+            },
+            {
+                id: 20,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Your security team wants to know which permissions are actually being used by a service account. What tool should they use?",
+                options: [
+                    "A. Cloud Audit Logs",
+                    "B. IAM Policy Analyzer",
+                    "C. Policy Intelligence - IAM Recommender",
+                    "D. Security Command Center"
+                ],
+                correctAnswer: 2,
+                explanation: "Policy Intelligence includes IAM Recommender, which analyzes actual permission usage over time and identifies which permissions are used versus unused. This helps in right-sizing service account permissions and implementing least privilege."
+            },
+            {
+                id: 21,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "What is the maximum duration for short-lived credentials generated using generateAccessToken?",
+                options: [
+                    "A. 1 hour",
+                    "B. 12 hours",
+                    "C. 24 hours",
+                    "D. 7 days"
+                ],
+                correctAnswer: 1,
+                explanation: "Short-lived credentials generated using the generateAccessToken method have a maximum lifetime of 12 hours by default. This can be reduced but not exceeded. Short-lived credentials are preferred over long-lived service account keys for better security."
+            },
+            {
+                id: 22,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "An application needs to access Cloud Storage from a Compute Engine VM. What is the recommended authentication method?",
+                options: [
+                    "A. Store a service account key on the VM",
+                    "B. Use the VM's attached service account",
+                    "C. Hardcode API credentials in the application",
+                    "D. Use user account OAuth credentials"
+                ],
+                correctAnswer: 1,
+                explanation: "The recommended method is to use the VM's attached service account. Compute Engine VMs automatically have access to credentials for their attached service account through the metadata server, eliminating the need for storing keys on the VM."
+            },
+            {
+                id: 23,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "You want to prevent any project in your organization from using the default Compute Engine service account. What should you configure?",
+                options: [
+                    "A. IAM deny policy at organization level",
+                    "B. Organization policy: constraints/compute.requireOsLogin",
+                    "C. Organization policy: constraints/iam.disableServiceAccountCreation",
+                    "D. Remove the Compute Engine default service account role"
+                ],
+                correctAnswer: 0,
+                explanation: "An IAM deny policy at the organization level can explicitly deny the use of default Compute Engine service accounts. While there isn't a specific org policy to disable default SA usage, deny policies provide the mechanism to block specific actions across the organization."
+            },
+            {
+                id: 24,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Which authentication method should be used for a CI/CD pipeline running on GitHub Actions that needs to deploy to GCP?",
+                options: [
+                    "A. Store a service account key as a GitHub secret",
+                    "B. Workload Identity Federation with GitHub as the identity provider",
+                    "C. User account credentials in environment variables",
+                    "D. API key stored in the repository"
+                ],
+                correctAnswer: 1,
+                explanation: "Workload Identity Federation supports GitHub Actions as an identity provider, allowing keyless authentication. The pipeline can exchange its GitHub OIDC token for GCP credentials without needing to store service account keys, significantly improving security."
+            },
+            {
+                id: 25,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "What is the purpose of the 'iam.serviceAccounts.signBlob' permission?",
+                options: [
+                    "A. To create new service accounts",
+                    "B. To generate signed URLs for Cloud Storage",
+                    "C. To delete service account keys",
+                    "D. To modify service account display names"
+                ],
+                correctAnswer: 1,
+                explanation: "The 'iam.serviceAccounts.signBlob' permission allows signing arbitrary data with a service account's private key. This is commonly used to generate signed URLs for Cloud Storage objects or to create custom tokens. It's a sensitive permission that should be carefully controlled."
+            },
+            {
+                id: 26,
+                domain: 1,
+                domainName: "Configuring Access",
+                question: "Your organization has multiple folders representing different departments. You want to ensure each department manages its own IAM policies but cannot affect other departments. What should you implement?",
+                options: [
+                    "A. Grant each department Folder IAM Admin at their folder level",
+                    "B. Grant each department Organization Administrator role",
+                    "C. Use project-level permissions only",
+                    "D. Create separate organizations for each department"
+                ],
+                correctAnswer: 0,
+                explanation: "Granting Folder IAM Admin at the folder level allows each department to manage IAM policies within their own folder hierarchy without affecting other folders. This provides proper isolation while maintaining centralized organization governance."
+            },
+
+            // SECTION 2: SECURING COMMUNICATIONS AND BOUNDARY PROTECTION (23 questions - ~22%)
+            {
+                id: 27,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Which GCP service should you use to protect your web applications from DDoS attacks and OWASP Top 10 vulnerabilities?",
+                options: [
+                    "A. Cloud NAT",
+                    "B. Cloud Armor",
+                    "C. VPC Service Controls",
+                    "D. Cloud IDS"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud Armor is Google's DDoS protection and web application firewall (WAF) service. It protects applications behind external load balancers from DDoS attacks and allows you to create security policies with rules based on OWASP Top 10 patterns, IP addresses, and geographic locations."
+            },
+            {
+                id: 28,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You need to allow traffic from a specific set of VMs to reach a database server. The VMs are in different subnets. What is the most secure approach?",
+                options: [
+                    "A. Create a firewall rule allowing traffic from the subnet CIDR ranges",
+                    "B. Create a firewall rule using network tags or service accounts",
+                    "C. Open the database port to 0.0.0.0/0",
+                    "D. Use Cloud NAT to route the traffic"
+                ],
+                correctAnswer: 1,
+                explanation: "Using network tags or service accounts in firewall rules is more secure than CIDR ranges. Tags and service accounts allow you to precisely control which VMs can communicate, and the access follows the VM even if its IP changes. This implements fine-grained, identity-based access control."
+            },
+            {
+                id: 29,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "What is the purpose of VPC Service Controls?",
+                options: [
+                    "A. To create firewall rules for VPC networks",
+                    "B. To prevent data exfiltration from Google Cloud services",
+                    "C. To encrypt traffic between VPCs",
+                    "D. To manage VPC peering connections"
+                ],
+                correctAnswer: 1,
+                explanation: "VPC Service Controls create security perimeters around Google Cloud resources to prevent data exfiltration. They can restrict which networks, identities, and services can access resources within the perimeter, helping contain potential breaches and meet data residency requirements."
+            },
+            {
+                id: 30,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Your organization requires that all VMs access the internet through a centralized inspection point. What should you deploy?",
+                options: [
+                    "A. Cloud NAT with logging enabled",
+                    "B. Cloud Next Generation Firewall with inspection",
+                    "C. External HTTP(S) Load Balancer",
+                    "D. Cloud VPN"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud Next Generation Firewall (Cloud NGFW) provides layer 7 inspection, intrusion prevention, and TLS inspection capabilities. It can serve as a centralized inspection point for outbound traffic, allowing security teams to monitor and control egress traffic."
+            },
+            {
+                id: 31,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You want to allow internal VMs to access Google APIs without exposing them to the public internet. What should you configure?",
+                options: [
+                    "A. External IP addresses on all VMs",
+                    "B. Private Google Access",
+                    "C. Cloud Armor policies",
+                    "D. VPC peering with Google's network"
+                ],
+                correctAnswer: 1,
+                explanation: "Private Google Access allows VMs with only internal IP addresses to access Google APIs and services using internal IP addresses instead of public IPs. The traffic stays within Google's network and doesn't traverse the public internet."
+            },
+            {
+                id: 32,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Which load balancer feature ensures that only authenticated users can access your internal web application?",
+                options: [
+                    "A. SSL policies",
+                    "B. Identity-Aware Proxy (IAP)",
+                    "C. Cloud CDN",
+                    "D. Health checks"
+                ],
+                correctAnswer: 1,
+                explanation: "Identity-Aware Proxy (IAP) provides application-level access control. When enabled on a load balancer, IAP verifies the user's identity and checks if they're authorized to access the application before allowing the connection, implementing zero-trust access."
+            },
+            {
+                id: 33,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "What is the default behavior of VPC firewall rules for ingress traffic?",
+                options: [
+                    "A. All ingress traffic is allowed by default",
+                    "B. All ingress traffic is denied by default",
+                    "C. Only traffic from within the VPC is allowed",
+                    "D. Only HTTPS traffic is allowed"
+                ],
+                correctAnswer: 1,
+                explanation: "VPC firewall rules deny all ingress traffic by default (implied deny rule). You must explicitly create allow rules for any traffic you want to permit. This default-deny posture provides better security by requiring intentional configuration of allowed traffic."
+            },
+            {
+                id: 34,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You need to connect your on-premises network to GCP with guaranteed bandwidth and low latency. Which option provides the highest reliability?",
+                options: [
+                    "A. Cloud VPN",
+                    "B. Dedicated Interconnect",
+                    "C. Partner Interconnect",
+                    "D. Direct Peering"
+                ],
+                correctAnswer: 1,
+                explanation: "Dedicated Interconnect provides the highest reliability and performance with dedicated physical connections between your on-premises network and Google's network. It offers guaranteed bandwidth up to 200 Gbps, low latency, and an SLA for availability."
+            },
+            {
+                id: 35,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Which Cloud Armor feature allows you to rate-limit requests from specific clients?",
+                options: [
+                    "A. Preconfigured WAF rules",
+                    "B. Rate limiting rules with threshold",
+                    "C. IP blacklisting",
+                    "D. Geographic restrictions"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud Armor supports rate limiting rules that allow you to specify thresholds for requests per client. When exceeded, you can choose to deny, throttle, or redirect the traffic. This helps protect against volumetric attacks and abusive clients."
+            },
+            {
+                id: 36,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Your security team wants to inspect TLS-encrypted traffic for threats before it reaches your applications. What should you enable?",
+                options: [
+                    "A. SSL policies on the load balancer",
+                    "B. Cloud NGFW with TLS inspection",
+                    "C. Certificate Authority Service",
+                    "D. Cloud CDN"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud Next Generation Firewall supports TLS inspection, which decrypts TLS traffic, inspects it for threats using intrusion prevention rules, and re-encrypts it before forwarding. This allows deep packet inspection of encrypted traffic."
+            },
+            {
+                id: 37,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "What is the primary purpose of Shared VPC?",
+                options: [
+                    "A. To share VPN connections between projects",
+                    "B. To allow multiple projects to use a common VPC network",
+                    "C. To create redundant VPC networks",
+                    "D. To enable VPC peering between regions"
+                ],
+                correctAnswer: 1,
+                explanation: "Shared VPC allows a VPC network to be shared across multiple projects in the same organization. Service projects can use subnets from the Shared VPC host project, enabling centralized network management while maintaining project-level resource isolation."
+            },
+            {
+                id: 38,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You need to allow your on-premises hosts to access Google APIs using private IP addresses. What should you configure?",
+                options: [
+                    "A. Private Google Access",
+                    "B. Private Google Access for on-premises hosts",
+                    "C. VPC Service Controls",
+                    "D. Cloud NAT"
+                ],
+                correctAnswer: 1,
+                explanation: "Private Google Access for on-premises hosts allows on-premises networks connected via Cloud VPN or Cloud Interconnect to access Google APIs using private IP addresses. This requires configuring DNS to resolve Google API endpoints to private IP ranges."
+            },
+            {
+                id: 39,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Which protocol does Cloud VPN use to encrypt traffic?",
+                options: [
+                    "A. TLS 1.3",
+                    "B. IPsec",
+                    "C. WireGuard",
+                    "D. SSL"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud VPN uses IPsec (Internet Protocol Security) to encrypt traffic between your on-premises network and GCP VPC. IPsec operates at the network layer, encrypting all traffic that passes through the VPN tunnel regardless of the application protocol."
+            },
+            {
+                id: 40,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You want to implement network segmentation for a three-tier application (web, app, database). What is the recommended approach?",
+                options: [
+                    "A. Place all tiers in the same subnet with firewall rules",
+                    "B. Create separate subnets for each tier with firewall rules controlling traffic flow",
+                    "C. Use separate VPCs for each tier connected via VPC peering",
+                    "D. Use different regions for each tier"
+                ],
+                correctAnswer: 1,
+                explanation: "The recommended approach is to create separate subnets for each tier within the same VPC and use firewall rules to control traffic flow between tiers. This provides logical separation while maintaining efficient communication, and firewall rules enforce that only appropriate traffic flows between tiers."
+            },
+            {
+                id: 41,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "What is the purpose of Cloud DNS Security Extensions (DNSSEC)?",
+                options: [
+                    "A. To encrypt DNS queries",
+                    "B. To authenticate DNS responses and prevent spoofing",
+                    "C. To provide private DNS resolution",
+                    "D. To cache DNS responses"
+                ],
+                correctAnswer: 1,
+                explanation: "DNSSEC provides authentication of DNS responses through digital signatures. It prevents DNS spoofing and cache poisoning attacks by allowing resolvers to verify that DNS responses are authentic and haven't been tampered with."
+            },
+            {
+                id: 42,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Your application needs to access resources in a VPC through a secure, private connection without traversing the internet. What should you use?",
+                options: [
+                    "A. Cloud NAT",
+                    "B. Private Service Connect",
+                    "C. External load balancer",
+                    "D. Cloud CDN"
+                ],
+                correctAnswer: 1,
+                explanation: "Private Service Connect allows you to consume services through private endpoints in your VPC. It provides private connectivity to Google APIs, supported services, or services hosted in another VPC without exposure to the public internet."
+            },
+            {
+                id: 43,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Which firewall rule priority is evaluated first?",
+                options: [
+                    "A. Priority 0 (lowest number)",
+                    "B. Priority 65535 (highest number)",
+                    "C. Rules are evaluated alphabetically",
+                    "D. All rules are evaluated in parallel"
+                ],
+                correctAnswer: 0,
+                explanation: "Firewall rules are evaluated from lowest to highest priority number. Priority 0 is the highest priority and is evaluated first. When a matching rule is found, that rule is applied and no further rules are evaluated. Priority 65535 is reserved for the implied rules."
+            },
+            {
+                id: 44,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You want to deploy a proxy for filtering and logging outbound web traffic. Which service should you use?",
+                options: [
+                    "A. Cloud NAT",
+                    "B. Secure Web Proxy",
+                    "C. Cloud Armor",
+                    "D. Identity-Aware Proxy"
+                ],
+                correctAnswer: 1,
+                explanation: "Secure Web Proxy is a cloud-native proxy service that allows you to filter, log, and inspect outbound web traffic. It provides URL filtering, TLS inspection, and integrates with Cloud Logging for comprehensive visibility into egress traffic."
+            },
+            {
+                id: 45,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "What is required to enable VPC Service Controls for a project?",
+                options: [
+                    "A. The project must be in a VPC",
+                    "B. The project must be added to a service perimeter",
+                    "C. Cloud Armor must be enabled",
+                    "D. Private Google Access must be enabled"
+                ],
+                correctAnswer: 1,
+                explanation: "To protect resources with VPC Service Controls, you must add the project to a service perimeter. The perimeter defines the boundary of protection and specifies which projects, services, and access levels are included in the security boundary."
+            },
+            {
+                id: 46,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "You need to ensure only approved certificate authorities issue certificates for your domain. What should you configure?",
+                options: [
+                    "A. SSL policies",
+                    "B. Certificate Authority Authorization (CAA) records in Cloud DNS",
+                    "C. Certificate Authority Service",
+                    "D. Cloud Armor"
+                ],
+                correctAnswer: 1,
+                explanation: "CAA (Certificate Authority Authorization) DNS records specify which certificate authorities are authorized to issue certificates for your domain. This helps prevent unauthorized certificate issuance and is a key control for protecting against man-in-the-middle attacks."
+            },
+            {
+                id: 47,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "What happens if you have two firewall rules with the same priority that both match a packet - one allowing and one denying?",
+                options: [
+                    "A. The allow rule takes precedence",
+                    "B. The deny rule takes precedence",
+                    "C. The packet is dropped",
+                    "D. The more specific rule is applied"
+                ],
+                correctAnswer: 3,
+                explanation: "When multiple rules match at the same priority, the more specific rule takes precedence. If specificity is equal, deny rules take precedence over allow rules. Best practice is to use different priorities to make rule evaluation deterministic."
+            },
+            {
+                id: 48,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Your organization wants to ensure that BigQuery data cannot be copied to projects outside the service perimeter. What feature enforces this?",
+                options: [
+                    "A. IAM policies",
+                    "B. VPC Service Controls with restricted services",
+                    "C. Organization policies",
+                    "D. Data Loss Prevention"
+                ],
+                correctAnswer: 1,
+                explanation: "VPC Service Controls with BigQuery as a restricted service prevents data from being copied outside the service perimeter. Even authorized users cannot copy data to projects that are not within the same perimeter, preventing data exfiltration."
+            },
+            {
+                id: 49,
+                domain: 2,
+                domainName: "Boundary Protection",
+                question: "Which component is required to use Identity-Aware Proxy for TCP forwarding to VMs?",
+                options: [
+                    "A. External IP addresses on the VMs",
+                    "B. IAP-secured tunnel configured in the firewall",
+                    "C. Cloud VPN connection",
+                    "D. Load balancer in front of the VMs"
+                ],
+                correctAnswer: 1,
+                explanation: "For IAP TCP forwarding, you need to configure firewall rules to allow the IAP IP range (35.235.240.0/20) to connect to your VMs on the appropriate ports. This enables secure, identity-aware access to VMs without needing external IPs."
+            },
+
+            // SECTION 3: ENSURING DATA PROTECTION (24 questions - ~23%)
+            {
+                id: 50,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Which encryption approach allows you to manage your own encryption keys but have Google handle the encryption process?",
+                options: [
+                    "A. Default encryption",
+                    "B. Customer-Managed Encryption Keys (CMEK)",
+                    "C. Customer-Supplied Encryption Keys (CSEK)",
+                    "D. Client-side encryption"
+                ],
+                correctAnswer: 1,
+                explanation: "CMEK allows you to create and manage encryption keys in Cloud KMS while Google handles the actual encryption and decryption operations. You control key rotation, access policies, and can revoke access by disabling or destroying the key."
+            },
+            {
+                id: 51,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your compliance team requires that encryption keys never leave your control, even during cryptographic operations. What should you use?",
+                options: [
+                    "A. Cloud HSM",
+                    "B. Cloud External Key Manager (EKM)",
+                    "C. CMEK with automatic rotation",
+                    "D. Default Google encryption"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud External Key Manager (EKM) allows you to use encryption keys stored and managed in a supported external key management system. The keys never leave your external key manager, even during cryptographic operations. Google Cloud accesses the keys via API."
+            },
+            {
+                id: 52,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "You need to store API keys and database passwords securely for use by your applications. Which service should you use?",
+                options: [
+                    "A. Cloud KMS",
+                    "B. Secret Manager",
+                    "C. Cloud Storage with encryption",
+                    "D. Environment variables"
+                ],
+                correctAnswer: 1,
+                explanation: "Secret Manager is designed specifically for storing, managing, and accessing secrets like API keys, passwords, and certificates. It provides versioning, automatic rotation, and fine-grained IAM access control. Cloud KMS is for encryption keys, not application secrets."
+            },
+            {
+                id: 53,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What is the purpose of Sensitive Data Protection (formerly DLP)?",
+                options: [
+                    "A. To encrypt data at rest",
+                    "B. To discover, classify, and de-identify sensitive data",
+                    "C. To prevent network data exfiltration",
+                    "D. To manage encryption keys"
+                ],
+                correctAnswer: 1,
+                explanation: "Sensitive Data Protection (SDP) helps you discover, classify, and protect sensitive information like PII, financial data, and credentials. It can scan data in Cloud Storage, BigQuery, and Datastore, and apply de-identification techniques like redaction and tokenization."
+            },
+            {
+                id: 54,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "You want to replace social security numbers in your BigQuery table with tokens that preserve referential integrity. Which technique should you use?",
+                options: [
+                    "A. Redaction",
+                    "B. Masking",
+                    "C. Tokenization (pseudonymization)",
+                    "D. Deletion"
+                ],
+                correctAnswer: 2,
+                explanation: "Tokenization (also called pseudonymization) replaces sensitive data with tokens that can maintain referential integrity across tables and databases. Unlike redaction or masking, tokenization allows you to reverse the process with the appropriate key to recover the original data if needed."
+            },
+            {
+                id: 55,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Which BigQuery feature restricts access to specific columns based on user attributes?",
+                options: [
+                    "A. Row-level security",
+                    "B. Column-level security with policy tags",
+                    "C. Dataset-level IAM",
+                    "D. Authorized views"
+                ],
+                correctAnswer: 1,
+                explanation: "Column-level security in BigQuery uses Data Catalog policy tags to restrict access to specific columns. You apply policy tags to sensitive columns and grant or deny access to those tags through IAM, providing fine-grained access control at the column level."
+            },
+            {
+                id: 56,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your application processes sensitive data in memory and you want to protect it even while in use. What should you enable?",
+                options: [
+                    "A. CMEK encryption",
+                    "B. Confidential Computing",
+                    "C. Cloud HSM",
+                    "D. Shielded VMs"
+                ],
+                correctAnswer: 1,
+                explanation: "Confidential Computing uses hardware-based memory encryption to protect data while it's being processed. Confidential VMs and Confidential GKE nodes encrypt memory contents, protecting data from the hypervisor and other processes, even during computation."
+            },
+            {
+                id: 57,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What happens when you destroy a Cloud KMS key version?",
+                options: [
+                    "A. Data encrypted with that key is immediately decrypted",
+                    "B. The key enters a 24-hour scheduled destruction period",
+                    "C. Data encrypted with that key becomes permanently inaccessible",
+                    "D. A backup key version is automatically created"
+                ],
+                correctAnswer: 2,
+                explanation: "When you schedule a key version for destruction and the destruction occurs, the key material is permanently deleted. Any data encrypted with that key version becomes permanently inaccessible. There is a configurable scheduled destruction period (minimum 24 hours) to prevent accidental deletion."
+            },
+            {
+                id: 58,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Which Cloud Storage setting ensures that objects are only accessible via HTTPS?",
+                options: [
+                    "A. Uniform bucket-level access",
+                    "B. Public access prevention",
+                    "C. HTTPS-only bucket policy",
+                    "D. Organization policy constraint for HTTPS"
+                ],
+                correctAnswer: 0,
+                explanation: "Cloud Storage objects are always served over HTTPS when accessed via Google Cloud APIs. However, uniform bucket-level access combined with IAM policies can enforce access controls. For signed URLs, you should always generate HTTPS URLs to ensure encrypted transport."
+            },
+            {
+                id: 59,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your organization wants to ensure Cloud Storage buckets cannot be made publicly accessible. What should you configure?",
+                options: [
+                    "A. IAM Conditions",
+                    "B. Organization policy: constraints/storage.publicAccessPrevention",
+                    "C. VPC Service Controls",
+                    "D. Bucket-level ACLs"
+                ],
+                correctAnswer: 1,
+                explanation: "The organization policy constraint 'constraints/storage.publicAccessPrevention' prevents buckets from being made publicly accessible at the organization or folder level. When enabled, it blocks all public access, even if ACLs or IAM policies would otherwise allow it."
+            },
+            {
+                id: 60,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What is the difference between hardware and software protection levels in Cloud KMS?",
+                options: [
+                    "A. Hardware keys are faster to use",
+                    "B. Software keys can only be used for symmetric encryption",
+                    "C. Hardware keys are protected by FIPS 140-2 Level 3 validated HSMs",
+                    "D. Software keys cannot be rotated automatically"
+                ],
+                correctAnswer: 2,
+                explanation: "Hardware protection level (Cloud HSM) stores keys in FIPS 140-2 Level 3 validated Hardware Security Modules, providing the highest level of key protection. Software protection level stores keys in software, which is suitable for many use cases but doesn't meet the strictest compliance requirements."
+            },
+            {
+                id: 61,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "You need to automatically delete Cloud Storage objects after 90 days. What should you configure?",
+                options: [
+                    "A. Retention policy",
+                    "B. Object lifecycle management",
+                    "C. Cloud Scheduler",
+                    "D. Object versioning"
+                ],
+                correctAnswer: 1,
+                explanation: "Object lifecycle management allows you to define rules that automatically transition objects to different storage classes or delete them based on conditions like age, creation date, or number of versions. A delete action with age condition of 90 days achieves automatic deletion."
+            },
+            {
+                id: 62,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What is the recommended approach for protecting Compute Engine instance metadata?",
+                options: [
+                    "A. Disable the metadata server",
+                    "B. Use instance metadata hiding and service account restrictions",
+                    "C. Encrypt the metadata with CMEK",
+                    "D. Store metadata in Secret Manager"
+                ],
+                correctAnswer: 1,
+                explanation: "To protect instance metadata, you should restrict the service account attached to VMs, disable legacy metadata endpoints, require metadata request headers, and limit which metadata attributes are accessible. This prevents unauthorized metadata access from compromised applications."
+            },
+            {
+                id: 63,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your compliance requirements mandate that data must not leave the EU. Which feature helps enforce this?",
+                options: [
+                    "A. VPC Service Controls",
+                    "B. Organization policy for resource locations",
+                    "C. Cloud Armor geo-blocking",
+                    "D. Regional Cloud Storage buckets"
+                ],
+                correctAnswer: 1,
+                explanation: "Organization policies can restrict resource locations to specific regions or multi-regions. The 'constraints/gcp.resourceLocations' constraint ensures resources are only created in compliant locations, helping meet data residency requirements."
+            },
+            {
+                id: 64,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Which technique preserves the format of credit card numbers while making them non-sensitive?",
+                options: [
+                    "A. Redaction",
+                    "B. Hashing",
+                    "C. Format-preserving encryption",
+                    "D. Bucketing"
+                ],
+                correctAnswer: 2,
+                explanation: "Format-preserving encryption (FPE) encrypts data while maintaining its original format. For credit card numbers, the result looks like a valid credit card number but contains no sensitive information. This is useful when downstream systems expect data in a specific format."
+            },
+            {
+                id: 65,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your team needs to share a Cloud Storage bucket with an external auditor for 7 days. What is the most secure approach?",
+                options: [
+                    "A. Make the bucket public temporarily",
+                    "B. Create a signed URL with 7-day expiration",
+                    "C. Share service account credentials",
+                    "D. Create a Google account for the auditor"
+                ],
+                correctAnswer: 1,
+                explanation: "Signed URLs provide time-limited access to specific Cloud Storage objects without requiring the user to have a Google account or IAM permissions. The URL contains authentication information and can be set to expire after 7 days."
+            },
+            {
+                id: 66,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What is the purpose of Cloud SQL IAM database authentication?",
+                options: [
+                    "A. To encrypt database connections",
+                    "B. To allow users to authenticate using their Google Cloud credentials",
+                    "C. To manage database schemas",
+                    "D. To automate database backups"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud SQL IAM database authentication allows users to authenticate to the database using their IAM credentials instead of separate database passwords. This provides centralized identity management and eliminates the need to manage database-specific credentials."
+            },
+            {
+                id: 67,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Which service should you use to import existing encryption keys into Google Cloud?",
+                options: [
+                    "A. Secret Manager",
+                    "B. Cloud KMS import job",
+                    "C. Cloud HSM direct upload",
+                    "D. Customer-Supplied Encryption Keys"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud KMS import jobs allow you to securely import your existing cryptographic keys into Cloud KMS. The import process uses wrapping keys to protect the key material during transfer, ensuring the key is never exposed in plaintext outside of your control."
+            },
+            {
+                id: 68,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "You want to prevent accidental deletion of important Cloud Storage objects. What should you enable?",
+                options: [
+                    "A. Object versioning",
+                    "B. Bucket lock with retention policy",
+                    "C. CMEK encryption",
+                    "D. Object lifecycle management"
+                ],
+                correctAnswer: 1,
+                explanation: "Bucket lock with a retention policy prevents objects from being deleted or modified until the retention period expires. Once a bucket lock is applied with a retention policy, it cannot be removed, making it suitable for regulatory compliance and preventing accidental or malicious deletion."
+            },
+            {
+                id: 69,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your ML pipeline needs to access training data but shouldn't see the raw PII. What approach should you use?",
+                options: [
+                    "A. Train the model on encrypted data",
+                    "B. Use Sensitive Data Protection to de-identify data before training",
+                    "C. Restrict the ML pipeline's IAM permissions",
+                    "D. Use a separate project for ML workloads"
+                ],
+                correctAnswer: 1,
+                explanation: "Sensitive Data Protection can de-identify PII in your training data using techniques like redaction, tokenization, or generalization. This allows your ML pipeline to work with useful data patterns while protecting individual privacy."
+            },
+            {
+                id: 70,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What is the recommended key rotation period for CMEK keys used with Cloud Storage?",
+                options: [
+                    "A. 30 days",
+                    "B. 90 days",
+                    "C. 365 days",
+                    "D. No rotation needed for symmetric keys"
+                ],
+                correctAnswer: 1,
+                explanation: "Google recommends rotating encryption keys at least every 90 days. Cloud KMS supports automatic key rotation that creates new key versions on your schedule. Old key versions remain available for decrypting existing data while new data uses the latest version."
+            },
+            {
+                id: 71,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Which feature allows you to grant access to BigQuery data based on row content?",
+                options: [
+                    "A. Authorized views",
+                    "B. Row-level access policies",
+                    "C. Column-level security",
+                    "D. Dataset-level IAM"
+                ],
+                correctAnswer: 1,
+                explanation: "Row-level access policies (row-level security) in BigQuery allow you to filter table data based on user attributes. You can define policies that restrict which rows different users can see, such as allowing salespeople to only see their own region's data."
+            },
+            {
+                id: 72,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "Your application needs to encrypt data before sending it to Cloud Storage. What is this approach called?",
+                options: [
+                    "A. Server-side encryption",
+                    "B. Client-side encryption",
+                    "C. CMEK encryption",
+                    "D. Default encryption"
+                ],
+                correctAnswer: 1,
+                explanation: "Client-side encryption means your application encrypts data before sending it to Google Cloud. Google stores the encrypted data without access to the encryption keys. This provides the highest level of control but requires managing encryption in your application."
+            },
+            {
+                id: 73,
+                domain: 3,
+                domainName: "Data Protection",
+                question: "What security control does Shielded VM provide?",
+                options: [
+                    "A. Memory encryption",
+                    "B. Secure boot and integrity monitoring",
+                    "C. Disk encryption",
+                    "D. Network encryption"
+                ],
+                correctAnswer: 1,
+                explanation: "Shielded VMs provide verifiable integrity through Secure Boot, vTPM, and integrity monitoring. They protect against rootkits and boot-level malware by ensuring the VM only runs authentic, unmodified firmware and OS components."
+            },
+
+            // SECTION 4: MANAGING OPERATIONS (20 questions - ~19%)
+            {
+                id: 74,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Which log type records administrative actions like creating a VM or modifying IAM policies?",
+                options: [
+                    "A. Data Access logs",
+                    "B. Admin Activity logs",
+                    "C. System Event logs",
+                    "D. VPC Flow logs"
+                ],
+                correctAnswer: 1,
+                explanation: "Admin Activity logs record administrative actions that modify resource configurations or metadata, such as creating VMs, changing IAM policies, or updating firewall rules. These logs are always written and cannot be disabled, and they're retained for 400 days."
+            },
+            {
+                id: 75,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You need to detect if someone is reading sensitive data in BigQuery outside of normal business hours. What should you enable?",
+                options: [
+                    "A. Admin Activity logs",
+                    "B. Data Access logs",
+                    "C. VPC Flow logs",
+                    "D. Cloud Armor logs"
+                ],
+                correctAnswer: 1,
+                explanation: "Data Access logs record API calls that read or write user-provided data, such as reading BigQuery tables. Unlike Admin Activity logs, Data Access logs must be explicitly enabled and can be configured per service. They help detect unauthorized data access."
+            },
+            {
+                id: 76,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Security Command Center has detected a public Cloud Storage bucket. What category does this finding belong to?",
+                options: [
+                    "A. Threat",
+                    "B. Vulnerability",
+                    "C. Misconfiguration",
+                    "D. Error"
+                ],
+                correctAnswer: 2,
+                explanation: "A public Cloud Storage bucket is a misconfiguration finding in Security Command Center. Security Health Analytics detects misconfigurations like public buckets, open firewall rules, and overly permissive IAM policies. Threats represent active attacks, while vulnerabilities are exploitable weaknesses."
+            },
+            {
+                id: 77,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You want to automatically remediate Security Command Center findings. What approach should you use?",
+                options: [
+                    "A. Manual review and remediation",
+                    "B. Cloud Functions triggered by Pub/Sub notifications",
+                    "C. Scheduled Cloud Scheduler jobs",
+                    "D. External SIEM integration"
+                ],
+                correctAnswer: 1,
+                explanation: "Security Command Center can publish findings to Pub/Sub topics, which can trigger Cloud Functions for automated remediation. For example, a function could automatically remove public access from a bucket or disable an overly permissive firewall rule."
+            },
+            {
+                id: 78,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "What is the purpose of VPC Flow Logs?",
+                options: [
+                    "A. To log firewall rule evaluations",
+                    "B. To capture metadata about network flows (IP traffic)",
+                    "C. To monitor DNS queries",
+                    "D. To log load balancer requests"
+                ],
+                correctAnswer: 1,
+                explanation: "VPC Flow Logs capture metadata about IP traffic going to and from network interfaces in VPC networks. They record source/destination IPs, ports, protocol, bytes, and packets. They're useful for network monitoring, forensics, and troubleshooting connectivity issues."
+            },
+            {
+                id: 79,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Your security team needs to export logs to a SIEM system for analysis. What should you configure?",
+                options: [
+                    "A. Log views",
+                    "B. Log sinks to Cloud Pub/Sub",
+                    "C. Log-based metrics",
+                    "D. Cloud Trace"
+                ],
+                correctAnswer: 1,
+                explanation: "Log sinks export log entries to various destinations including Pub/Sub, which can forward logs to external SIEM systems. You can also sink logs directly to Cloud Storage or BigQuery. Sinks support filters to export only specific logs."
+            },
+            {
+                id: 80,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Which Security Command Center tier includes threat detection capabilities like Event Threat Detection?",
+                options: [
+                    "A. Standard tier (free)",
+                    "B. Premium tier",
+                    "C. All tiers include threat detection",
+                    "D. Enterprise tier only"
+                ],
+                correctAnswer: 1,
+                explanation: "Event Threat Detection (ETD), which analyzes logs for suspicious activity like cryptocurrency mining or data exfiltration, is a Premium tier feature. The Standard tier provides security health analytics and vulnerability scanning, but advanced threat detection requires Premium."
+            },
+            {
+                id: 81,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You need to scan container images for vulnerabilities before they are deployed. What should you enable?",
+                options: [
+                    "A. Cloud Armor",
+                    "B. Container Analysis with vulnerability scanning",
+                    "C. Web Security Scanner",
+                    "D. Cloud IDS"
+                ],
+                correctAnswer: 1,
+                explanation: "Container Analysis with vulnerability scanning automatically scans container images in Artifact Registry or Container Registry for known vulnerabilities (CVEs). It provides a list of detected vulnerabilities with severity ratings and remediation guidance."
+            },
+            {
+                id: 82,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "What is the purpose of Binary Authorization?",
+                options: [
+                    "A. To encrypt container images",
+                    "B. To ensure only trusted container images are deployed to GKE",
+                    "C. To scan images for vulnerabilities",
+                    "D. To manage container registries"
+                ],
+                correctAnswer: 1,
+                explanation: "Binary Authorization is a deploy-time security control that ensures only trusted container images are deployed to GKE, Cloud Run, or Anthos. It requires images to be signed by trusted authorities before deployment, implementing a software supply chain security policy."
+            },
+            {
+                id: 83,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You want to detect network-based threats like intrusion attempts in your VPC. What service should you deploy?",
+                options: [
+                    "A. Cloud Armor",
+                    "B. Cloud IDS",
+                    "C. VPC Flow Logs",
+                    "D. Firewall Rules Logging"
+                ],
+                correctAnswer: 1,
+                explanation: "Cloud Intrusion Detection System (Cloud IDS) is a managed network threat detection service. It analyzes network traffic using threat signatures from Palo Alto Networks to detect malware, spyware, command-and-control attacks, and other network-based threats."
+            },
+            {
+                id: 84,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Your organization requires that all VM images meet security hardening standards before deployment. What should you implement?",
+                options: [
+                    "A. Shielded VMs",
+                    "B. Custom hardened images with automated image building",
+                    "C. OS patch management only",
+                    "D. Boot disk encryption"
+                ],
+                correctAnswer: 1,
+                explanation: "Creating custom hardened images using automated image building (like Packer with Cloud Build) ensures all VMs are built from a consistent, security-hardened base. Combined with Binary Authorization for containers, this implements infrastructure as code for security."
+            },
+            {
+                id: 85,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "What is the retention period for Admin Activity audit logs?",
+                options: [
+                    "A. 30 days",
+                    "B. 90 days",
+                    "C. 400 days",
+                    "D. Configurable by the user"
+                ],
+                correctAnswer: 2,
+                explanation: "Admin Activity audit logs are retained for 400 days at no charge and cannot be deleted or modified. If you need longer retention, you must export logs using a sink to Cloud Storage or BigQuery before the 400-day period expires."
+            },
+            {
+                id: 86,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You need to create an alert when SSH keys are added to a VM. What should you configure?",
+                options: [
+                    "A. VPC Flow Logs with alerting",
+                    "B. Log-based alert on Admin Activity logs",
+                    "C. Cloud Armor security policy",
+                    "D. OS Login policy"
+                ],
+                correctAnswer: 1,
+                explanation: "Adding SSH keys to a VM is recorded in Admin Activity audit logs. You can create a log-based alert using Cloud Logging that triggers when log entries match a filter for setMetadata operations that modify SSH keys. This provides real-time alerting on configuration changes."
+            },
+            {
+                id: 87,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "What tool helps you identify the attack path an attacker could use to reach critical assets?",
+                options: [
+                    "A. Security Health Analytics",
+                    "B. Attack Path Simulation (Virtual Red Teaming)",
+                    "C. Event Threat Detection",
+                    "D. Web Security Scanner"
+                ],
+                correctAnswer: 1,
+                explanation: "Attack Path Simulation (part of Security Command Center Premium) uses virtual red teaming to simulate how an attacker could exploit vulnerabilities and misconfigurations to reach high-value resources. It helps prioritize remediation based on actual attack feasibility."
+            },
+            {
+                id: 88,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Which service allows you to capture and inspect packets for network forensics?",
+                options: [
+                    "A. VPC Flow Logs",
+                    "B. Packet Mirroring",
+                    "C. Cloud IDS",
+                    "D. Firewall Rules Logging"
+                ],
+                correctAnswer: 1,
+                explanation: "Packet Mirroring clones network traffic from specified instances and forwards it to a collector for analysis. Unlike VPC Flow Logs which capture metadata, Packet Mirroring captures full packet contents, enabling deep packet inspection and forensic analysis."
+            },
+            {
+                id: 89,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You want to aggregate logs from multiple projects into a central project. What should you create?",
+                options: [
+                    "A. Individual sinks in each project",
+                    "B. Aggregated sink at the organization or folder level",
+                    "C. Log bucket with cross-project access",
+                    "D. BigQuery dataset with federated queries"
+                ],
+                correctAnswer: 1,
+                explanation: "Aggregated sinks at the organization or folder level can export logs from all child projects to a central destination like a logging project's bucket. This simplifies central log management and ensures all projects' logs are captured without individual configuration."
+            },
+            {
+                id: 90,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "What is the purpose of Security Health Analytics custom modules?",
+                options: [
+                    "A. To create custom firewall rules",
+                    "B. To define organization-specific security checks",
+                    "C. To write custom ETD detectors",
+                    "D. To configure custom compliance frameworks"
+                ],
+                correctAnswer: 1,
+                explanation: "Security Health Analytics custom modules allow you to define organization-specific security checks beyond the built-in detectors. You can create custom rules that scan for misconfigurations specific to your security policies or compliance requirements."
+            },
+            {
+                id: 91,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Your organization needs to enforce automatic OS patching on all VMs. What should you use?",
+                options: [
+                    "A. Shielded VMs",
+                    "B. VM Manager with OS patch management",
+                    "C. Container-Optimized OS",
+                    "D. Boot disk snapshots"
+                ],
+                correctAnswer: 1,
+                explanation: "VM Manager provides OS patch management capabilities for Compute Engine VMs. It can assess patch compliance, automate patch deployment on schedules, and report on patch status. This helps maintain security by ensuring systems have the latest security updates."
+            },
+            {
+                id: 92,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "Which Security Command Center feature provides MITRE ATT&CK framework mapping for detected threats?",
+                options: [
+                    "A. Security Health Analytics",
+                    "B. Event Threat Detection with threat findings",
+                    "C. Web Security Scanner",
+                    "D. Container Threat Detection"
+                ],
+                correctAnswer: 1,
+                explanation: "Event Threat Detection findings include MITRE ATT&CK framework mappings, showing which tactics and techniques align with detected threats. This helps security teams understand the nature of attacks and respond using standardized threat intelligence frameworks."
+            },
+            {
+                id: 93,
+                domain: 4,
+                domainName: "Managing Operations",
+                question: "You need to restrict who can view logs containing sensitive information. What should you configure?",
+                options: [
+                    "A. Encrypt logs with CMEK",
+                    "B. Log views with IAM access control",
+                    "C. Log exclusion filters",
+                    "D. Separate logging projects"
+                ],
+                correctAnswer: 1,
+                explanation: "Log views in Cloud Logging allow you to define filtered views of logs and control access via IAM. You can create views that show only specific logs and grant view access only to authorized users, implementing least-privilege access to log data."
+            },
+
+            // SECTION 5: SUPPORTING COMPLIANCE REQUIREMENTS (12 questions - ~11%)
+            {
+                id: 94,
+                domain: 5,
+                domainName: "Compliance",
+                question: "Your organization needs to deploy workloads that meet FedRAMP High requirements. What feature should you use?",
+                options: [
+                    "A. VPC Service Controls",
+                    "B. Assured Workloads",
+                    "C. Organization policies only",
+                    "D. Private Google Access"
+                ],
+                correctAnswer: 1,
+                explanation: "Assured Workloads creates compliance-controlled environments with enforced controls for regulatory frameworks like FedRAMP High, IL4, HIPAA, and others. It automatically applies organizational policies, resource location restrictions, and other controls required for compliance."
+            },
+            {
+                id: 95,
+                domain: 5,
+                domainName: "Compliance",
+                question: "What is the purpose of Access Transparency?",
+                options: [
+                    "A. To show which users accessed your resources",
+                    "B. To provide logs when Google personnel access your data for support",
+                    "C. To monitor third-party access to your resources",
+                    "D. To audit IAM policy changes"
+                ],
+                correctAnswer: 1,
+                explanation: "Access Transparency provides logs when Google support or engineering personnel access your data to fulfill their job duties (like responding to a support ticket). This is different from audit logs which record user access, and it's important for compliance and accountability."
+            },
+            {
+                id: 96,
+                domain: 5,
+                domainName: "Compliance",
+                question: "Your healthcare organization needs to ensure HIPAA compliance for PHI data. Which combination of controls is most important?",
+                options: [
+                    "A. Cloud Armor and Cloud CDN",
+                    "B. Encryption at rest, audit logging, and access controls",
+                    "C. Cloud NAT and firewall rules only",
+                    "D. Load balancing and auto-scaling"
+                ],
+                correctAnswer: 1,
+                explanation: "HIPAA compliance requires protection of Protected Health Information (PHI) through administrative, physical, and technical safeguards. Key technical controls include encryption at rest and in transit, comprehensive audit logging, and strict access controls based on the minimum necessary principle."
+            },
+            {
+                id: 97,
+                domain: 5,
+                domainName: "Compliance",
+                question: "What does the shared responsibility model mean for compliance?",
+                options: [
+                    "A. Google handles all compliance requirements",
+                    "B. Customers handle all compliance requirements",
+                    "C. Google secures the infrastructure; customers secure their workloads and data",
+                    "D. Compliance is optional in the cloud"
+                ],
+                correctAnswer: 2,
+                explanation: "The shared responsibility model means Google is responsible for securing the underlying cloud infrastructure (physical security, network, hardware), while customers are responsible for securing their workloads, data, identity management, and application security. Compliance is shared accordingly."
+            },
+            {
+                id: 98,
+                domain: 5,
+                domainName: "Compliance",
+                question: "You need to allow Google support to access your data only after explicit approval. What feature should you enable?",
+                options: [
+                    "A. Access Transparency",
+                    "B. Access Approval",
+                    "C. VPC Service Controls",
+                    "D. Organization Policy constraints"
+                ],
+                correctAnswer: 1,
+                explanation: "Access Approval requires explicit customer approval before Google personnel can access your data. When a support request requires data access, you receive an approval request that you must explicitly approve. This provides additional control over when Google can access your resources."
+            },
+            {
+                id: 99,
+                domain: 5,
+                domainName: "Compliance",
+                question: "Your compliance team needs to generate evidence of your GCP security controls for an audit. What tool should they use?",
+                options: [
+                    "A. Security Command Center",
+                    "B. Audit Manager",
+                    "C. Cloud Asset Inventory",
+                    "D. Policy Intelligence"
+                ],
+                correctAnswer: 1,
+                explanation: "Audit Manager in Security Command Center helps you continuously monitor, generate evidence, and report on your compliance posture. It can generate audit reports aligned with compliance frameworks like SOC 2, ISO 27001, and PCI-DSS, providing evidence for auditors."
+            },
+            {
+                id: 100,
+                domain: 5,
+                domainName: "Compliance",
+                question: "How should you structure your GCP resource hierarchy for compliance with multiple regulatory frameworks?",
+                options: [
+                    "A. Single project with all resources",
+                    "B. Separate folders for each compliance framework with appropriate policies",
+                    "C. Separate organizations for each framework",
+                    "D. Use labels instead of folders"
+                ],
+                correctAnswer: 1,
+                explanation: "Using separate folders for different compliance requirements allows you to apply specific organization policies, IAM roles, and audit configurations to each compliance domain. This provides logical separation while maintaining centralized governance at the organization level."
+            },
+            {
+                id: 101,
+                domain: 5,
+                domainName: "Compliance",
+                question: "What is the minimum log retention you should configure to meet typical regulatory requirements?",
+                options: [
+                    "A. 30 days",
+                    "B. 90 days",
+                    "C. 1 year or more, depending on the regulation",
+                    "D. No specific requirement"
+                ],
+                correctAnswer: 2,
+                explanation: "Most regulatory frameworks (HIPAA, PCI-DSS, SOX, GDPR) require log retention of at least 1 year, with some requiring up to 7 years. Since Admin Activity logs are retained for 400 days by default, you need to export logs to Cloud Storage or BigQuery for longer retention."
+            },
+            {
+                id: 102,
+                domain: 5,
+                domainName: "Compliance",
+                question: "Your organization processes credit card data and needs to comply with PCI-DSS. Which GCP feature helps isolate the cardholder data environment?",
+                options: [
+                    "A. Cloud NAT",
+                    "B. VPC Service Controls and network segmentation",
+                    "C. Cloud CDN",
+                    "D. Cloud Load Balancing"
+                ],
+                correctAnswer: 1,
+                explanation: "PCI-DSS requires isolating the Cardholder Data Environment (CDE). VPC Service Controls create security perimeters around GCP resources, and network segmentation using separate VPCs or subnets with strict firewall rules isolates CDE resources from non-CDE workloads."
+            },
+            {
+                id: 103,
+                domain: 5,
+                domainName: "Compliance",
+                question: "What controls does Assured Workloads automatically apply for compliance?",
+                options: [
+                    "A. Just encryption settings",
+                    "B. Resource location restrictions, support access controls, and encryption settings",
+                    "C. IAM roles only",
+                    "D. Network configuration only"
+                ],
+                correctAnswer: 1,
+                explanation: "Assured Workloads automatically enforces multiple compliance controls including resource location restrictions (data residency), personnel access restrictions, organization policies for security settings, encryption requirements, and support access controls appropriate for the selected compliance framework."
+            },
+            {
+                id: 104,
+                domain: 5,
+                domainName: "Compliance",
+                question: "How can you demonstrate that data is stored only in EU regions for GDPR compliance?",
+                options: [
+                    "A. Use eu-* regions only",
+                    "B. Enable organization policy for resource locations and use Cloud Asset Inventory to verify",
+                    "C. Check resource labels",
+                    "D. Review billing reports"
+                ],
+                correctAnswer: 1,
+                explanation: "Organization policies can restrict resource locations to EU regions. Cloud Asset Inventory provides a complete view of all resources and their locations, allowing you to verify and demonstrate compliance. Combined with audit logs, this provides evidence for GDPR data residency requirements."
+            },
+            {
+                id: 105,
+                domain: 5,
+                domainName: "Compliance",
+                question: "Your organization needs to segment access between production and development environments for SOC 2 compliance. What is the recommended approach?",
+                options: [
+                    "A. Use labels to differentiate environments",
+                    "B. Separate projects with distinct IAM policies and network isolation",
+                    "C. Same project with different service accounts",
+                    "D. Use different regions for each environment"
+                ],
+                correctAnswer: 1,
+                explanation: "SOC 2 requires logical access controls and separation of duties. Using separate projects for production and development allows distinct IAM policies, network isolation through separate VPCs, and clear audit boundaries. This implements proper environment segregation as required by SOC 2 CC6.1."
+            }
+        ];
+
+        // State Management
+        let currentMode = 'all';
+        let selectedDomain = 1;
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let answeredQuestions = new Set();
+        let bookmarkedQuestions = new Set();
+        let missedQuestions = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('startScreen');
+        const quizScreen = document.getElementById('quizScreen');
+        const resultsScreen = document.getElementById('resultsScreen');
+
+        // Mode Selection
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('border-blue-500', 'bg-blue-50', 'text-blue-700');
+                btn.classList.add('border-gray-200');
+            });
+            event.target.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-700');
+            event.target.classList.remove('border-gray-200');
+
+            document.getElementById('domainSelector').classList.toggle('hidden', mode !== 'domain');
+        }
+
+        // Start Quiz
+        function startQuiz() {
+            // Prepare questions based on mode
+            switch (currentMode) {
+                case 'all':
+                    currentQuestions = [...questions];
+                    break;
+                case 'domain':
+                    selectedDomain = parseInt(document.getElementById('domainSelect').value);
+                    currentQuestions = questions.filter(q => q.domain === selectedDomain);
+                    break;
+                case 'random':
+                    currentQuestions = shuffleArray([...questions]).slice(0, 50);
+                    break;
+                case 'missed':
+                    if (missedQuestions.length === 0) {
+                        alert('No missed questions to review. Complete a quiz first!');
+                        return;
+                    }
+                    currentQuestions = missedQuestions.map(id => questions.find(q => q.id === id));
+                    break;
+            }
+
+            // Reset state
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            answeredQuestions = new Set();
+
+            // Show quiz screen
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+
+            // Build question navigator
+            buildQuestionNav();
+            displayQuestion();
+            updateProgress();
+        }
+
+        // Shuffle array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Build Question Navigator
+        function buildQuestionNav() {
+            const nav = document.getElementById('questionNav');
+            nav.innerHTML = '';
+            currentQuestions.forEach((q, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-10 h-10 rounded-lg border-2 border-gray-200 text-sm font-medium hover:border-blue-300 transition-colors';
+                btn.textContent = index + 1;
+                btn.onclick = () => goToQuestion(index);
+                btn.id = `nav-btn-${index}`;
+                nav.appendChild(btn);
+            });
+        }
+
+        // Display Question
+        function displayQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Set domain badge
+            const domainBadge = document.getElementById('domainBadge');
+            const domainColors = {
+                1: 'bg-blue-100 text-blue-700',
+                2: 'bg-green-100 text-green-700',
+                3: 'bg-yellow-100 text-yellow-700',
+                4: 'bg-purple-100 text-purple-700',
+                5: 'bg-red-100 text-red-700'
+            };
+            domainBadge.className = `domain-tag px-2 py-1 rounded-full font-medium ${domainColors[question.domain]}`;
+            domainBadge.textContent = `Section ${question.domain}: ${question.domainName}`;
+
+            // Build options
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn w-full text-left px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-blue-300 transition-all';
+                btn.innerHTML = `<span class="font-medium">${option}</span>`;
+                btn.onclick = () => selectOption(index);
+                btn.id = `option-${index}`;
+                
+                // Restore previous answer if exists
+                if (userAnswers[question.id] !== undefined) {
+                    if (answeredQuestions.has(question.id)) {
+                        if (index === question.correctAnswer) {
+                            btn.classList.add('correct');
+                        } else if (index === userAnswers[question.id]) {
+                            btn.classList.add('incorrect');
+                        }
+                    } else if (index === userAnswers[question.id]) {
+                        btn.classList.add('selected');
+                    }
+                }
+                
+                container.appendChild(btn);
+            });
+
+            // Show/hide explanation
+            const explanationPanel = document.getElementById('explanationPanel');
+            if (answeredQuestions.has(question.id)) {
+                explanationPanel.classList.remove('hidden');
+                document.getElementById('explanationText').textContent = question.explanation;
+                document.getElementById('submitBtn').classList.add('hidden');
+            } else {
+                explanationPanel.classList.add('hidden');
+                document.getElementById('submitBtn').classList.remove('hidden');
+            }
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            
+            // Update bookmark button
+            updateBookmarkButton();
+            
+            // Update nav highlight
+            updateNavHighlight();
+        }
+
+        // Select Option
+        function selectOption(index) {
+            const question = currentQuestions[currentQuestionIndex];
+            if (answeredQuestions.has(question.id)) return;
+
+            userAnswers[question.id] = index;
+            
+            document.querySelectorAll('#optionsContainer button').forEach((btn, i) => {
+                btn.classList.remove('selected');
+                if (i === index) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        // Submit Answer
+        function submitAnswer() {
+            const question = currentQuestions[currentQuestionIndex];
+            if (userAnswers[question.id] === undefined) {
+                alert('Please select an answer first.');
+                return;
+            }
+
+            answeredQuestions.add(question.id);
+
+            // Show correct/incorrect
+            document.querySelectorAll('#optionsContainer button').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === question.correctAnswer) {
+                    btn.classList.add('correct');
+                } else if (index === userAnswers[question.id] && index !== question.correctAnswer) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            // Show explanation
+            document.getElementById('explanationPanel').classList.remove('hidden');
+            document.getElementById('explanationText').textContent = question.explanation;
+            document.getElementById('submitBtn').classList.add('hidden');
+
+            // Update nav button color
+            const navBtn = document.getElementById(`nav-btn-${currentQuestionIndex}`);
+            if (userAnswers[question.id] === question.correctAnswer) {
+                navBtn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+            } else {
+                navBtn.classList.add('bg-red-500', 'text-white', 'border-red-500');
+            }
+
+            updateProgress();
+        }
+
+        // Navigation
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else if (answeredQuestions.size === currentQuestions.length) {
+                showResults();
+            }
+        }
+
+        function goToQuestion(index) {
+            currentQuestionIndex = index;
+            displayQuestion();
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const total = currentQuestions.length;
+            const answered = answeredQuestions.size;
+            const correct = currentQuestions.filter(q => 
+                answeredQuestions.has(q.id) && userAnswers[q.id] === q.correctAnswer
+            ).length;
+            const incorrect = answered - correct;
+
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = incorrect;
+            document.getElementById('remainingCount').textContent = total - answered;
+
+            const percent = Math.round((answered / total) * 100);
+            document.getElementById('progressPercent').textContent = `${percent}%`;
+
+            const circle = document.getElementById('progressCircle');
+            const offset = 352 - (352 * percent / 100);
+            circle.style.strokeDashoffset = offset;
+        }
+
+        function updateNavHighlight() {
+            document.querySelectorAll('#questionNav button').forEach((btn, i) => {
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('ring-2', 'ring-blue-500');
+                } else {
+                    btn.classList.remove('ring-2', 'ring-blue-500');
+                }
+            });
+        }
+
+        // Bookmark
+        function toggleBookmark() {
+            const question = currentQuestions[currentQuestionIndex];
+            if (bookmarkedQuestions.has(question.id)) {
+                bookmarkedQuestions.delete(question.id);
+            } else {
+                bookmarkedQuestions.add(question.id);
+            }
+            updateBookmarkButton();
+        }
+
+        function updateBookmarkButton() {
+            const question = currentQuestions[currentQuestionIndex];
+            const btn = document.getElementById('bookmarkBtn');
+            const svg = btn.querySelector('svg');
+            if (bookmarkedQuestions.has(question.id)) {
+                svg.classList.remove('text-gray-400');
+                svg.classList.add('text-yellow-500');
+                svg.setAttribute('fill', 'currentColor');
+            } else {
+                svg.classList.add('text-gray-400');
+                svg.classList.remove('text-yellow-500');
+                svg.setAttribute('fill', 'none');
+            }
+        }
+
+        // End Quiz
+        function endQuiz() {
+            if (confirm('Are you sure you want to end the quiz?')) {
+                showResults();
+            }
+        }
+
+        // Show Results
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            const total = currentQuestions.length;
+            const answered = answeredQuestions.size;
+            const correct = currentQuestions.filter(q => 
+                answeredQuestions.has(q.id) && userAnswers[q.id] === q.correctAnswer
+            ).length;
+            const incorrect = answered - correct;
+            const score = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+
+            // Save missed questions
+            missedQuestions = currentQuestions
+                .filter(q => answeredQuestions.has(q.id) && userAnswers[q.id] !== q.correctAnswer)
+                .map(q => q.id);
+
+            // Update result display
+            document.getElementById('finalScore').textContent = `${score}%`;
+            document.getElementById('finalCorrect').textContent = correct;
+            document.getElementById('finalIncorrect').textContent = incorrect;
+            document.getElementById('finalTotal').textContent = answered;
+
+            // Set result icon and message
+            const resultIcon = document.getElementById('resultIcon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultSubtitle = document.getElementById('resultSubtitle');
+
+            if (score >= 70) {
+                resultIcon.className = 'w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-100';
+                resultIcon.innerHTML = '<svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+                resultTitle.textContent = 'Congratulations! 🎉';
+                resultTitle.className = 'text-3xl font-bold mb-2 text-green-600';
+                resultSubtitle.textContent = 'You passed the practice exam! You\'re ready for the real test.';
+            } else {
+                resultIcon.className = 'w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 bg-orange-100';
+                resultIcon.innerHTML = '<svg class="w-12 h-12 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
+                resultTitle.textContent = 'Keep Practicing!';
+                resultTitle.className = 'text-3xl font-bold mb-2 text-orange-600';
+                resultSubtitle.textContent = `You need 70% to pass. Review the missed questions and try again.`;
+            }
+
+            // Domain breakdown
+            const domainResults = document.getElementById('domainResults');
+            domainResults.innerHTML = '';
+
+            const domainNames = {
+                1: 'Configuring Access',
+                2: 'Boundary Protection',
+                3: 'Data Protection',
+                4: 'Managing Operations',
+                5: 'Compliance'
+            };
+
+            const domainColors = {
+                1: 'bg-blue-500',
+                2: 'bg-green-500',
+                3: 'bg-yellow-500',
+                4: 'bg-purple-500',
+                5: 'bg-red-500'
+            };
+
+            for (let domain = 1; domain <= 5; domain++) {
+                const domainQuestions = currentQuestions.filter(q => q.domain === domain);
+                if (domainQuestions.length === 0) continue;
+
+                const domainCorrect = domainQuestions.filter(q => 
+                    answeredQuestions.has(q.id) && userAnswers[q.id] === q.correctAnswer
+                ).length;
+                const domainTotal = domainQuestions.filter(q => answeredQuestions.has(q.id)).length;
+                const domainScore = domainTotal > 0 ? Math.round((domainCorrect / domainTotal) * 100) : 0;
+
+                const div = document.createElement('div');
+                div.className = 'flex items-center space-x-4';
+                div.innerHTML = `
+                    <span class="w-40 text-sm font-medium text-gray-700">Section ${domain}: ${domainNames[domain]}</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-3">
+                        <div class="${domainColors[domain]} h-3 rounded-full transition-all duration-500" style="width: ${domainScore}%"></div>
+                    </div>
+                    <span class="w-20 text-right text-sm font-medium ${domainScore >= 70 ? 'text-green-600' : 'text-red-600'}">${domainCorrect}/${domainTotal} (${domainScore}%)</span>
+                `;
+                domainResults.appendChild(div);
+            }
+        }
+
+        // Review Answers
+        function reviewAnswers() {
+            resultsScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestionIndex = 0;
+            displayQuestion();
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
