@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 DevSecOps Security Guide - Interactive Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyber-blue': '#00d4ff',
+                        'cyber-purple': '#6366f1',
+                        'cyber-green': '#10b981',
+                        'cyber-red': '#ef4444',
+                        'cyber-yellow': '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .interactive-demo {
+            border: 2px dashed #6366f1;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #f8fafc;
+        }
+        .threat-level {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .threat-low { background: #dcfce7; color: #166534; }
+        .threat-medium { background: #fef3c7; color: #92400e; }
+        .threat-high { background: #fee2e2; color: #991b1b; }
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .security-icon {
+            width: 3rem;
+            height: 3rem;
+            display: inline-block;
+        }
+        .tab-button.active {
+            background: #6366f1;
+            color: white;
+        }
+        .progress-bar {
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #10b981);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold">🔐 DevSecOps Security Guide</h1>
+                <div class="flex items-center space-x-4">
+                    <div class="progress-bar w-32">
+                        <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <span id="progressText" class="text-sm">0% Complete</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold mb-6">Secure Your Modern Stack</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                Learn DevSecOps security through interactive examples, real-world use cases, and practical demos. 
+                Built for developers, by DevSecOps engineers.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="scrollToSection('security-basics')" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Start Learning
+                </button>
+                <button onclick="startQuiz()" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                    Take Quiz
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        
+        <!-- Security Basics -->
+        <section id="security-basics" class="mb-16">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold text-gray-800 mb-4">What is Security in DevSecOps?</h3>
+                <p class="text-xl text-gray-600">Plain language explanations for complex concepts</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <div class="security-icon mx-auto mb-4">🛡️</div>
+                        <h4 class="text-2xl font-bold text-gray-800">Security Definition</h4>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                        <p class="text-lg text-gray-700">
+                            <strong>Security</strong> means protecting users, data, infrastructure, APIs, and AI systems 
+                            from misuse, leaks, downtime, and attacks — <em>without slowing development</em>.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <div class="security-icon mx-auto mb-4">🔄</div>
+                        <h4 class="text-2xl font-bold text-gray-800">DevSecOps Definition</h4>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                        <p class="text-lg text-gray-700">
+                            <strong>DevSecOps</strong> is building security <strong>into</strong> development, 
+                            making it automated, continuously monitored, and a shared responsibility across teams.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Architecture Diagram -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+                <h4 class="text-2xl font-bold text-gray-800 mb-6 text-center">🔧 Interactive Architecture</h4>
+                <p class="text-gray-600 text-center mb-8">Click on each component to see security details</p>
+                
+                <div class="space-y-4">
+                    <!-- User Layer -->
+                    <div class="flex justify-center">
+                        <div onclick="showComponentDetails('user')" class="bg-blue-500 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-blue-600 transition">
+                            👤 User
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="text-2xl">⬇️</div>
+                    </div>
+                    
+                    <!-- CDN/Web Layer -->
+                    <div class="flex justify-center">
+                        <div onclick="showComponentDetails('cdn')" class="bg-green-500 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-green-600 transition">
+                            🌐 Vercel/CDN
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="text-2xl">⬇️</div>
+                    </div>
+                    
+                    <!-- Application Layer -->
+                    <div class="flex justify-center">
+                        <div onclick="showComponentDetails('app')" class="bg-purple-500 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-purple-600 transition">
+                            ⚛️ Next.js + React
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="text-2xl">⬇️</div>
+                    </div>
+                    
+                    <!-- Backend Services -->
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div onclick="showComponentDetails('auth')" class="bg-yellow-500 text-white px-4 py-3 rounded-lg cursor-pointer hover:bg-yellow-600 transition text-center">
+                            🔐 Auth
+                        </div>
+                        <div onclick="showComponentDetails('api')" class="bg-orange-500 text-white px-4 py-3 rounded-lg cursor-pointer hover:bg-orange-600 transition text-center">
+                            🔌 APIs
+                        </div>
+                        <div onclick="showComponentDetails('database')" class="bg-red-500 text-white px-4 py-3 rounded-lg cursor-pointer hover:bg-red-600 transition text-center">
+                            💾 Database
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="text-2xl">⬇️</div>
+                    </div>
+                    
+                    <!-- Infrastructure -->
+                    <div class="flex justify-center">
+                        <div onclick="showComponentDetails('cloud')" class="bg-gray-600 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-gray-700 transition">
+                            ☁️ AWS/GCP Cloud
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="componentDetails" class="mt-8 hidden">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h5 class="text-xl font-bold mb-4" id="componentTitle"></h5>
+                        <div id="componentContent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Security Domains -->
+        <section id="security-domains" class="mb-16">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">🛡️ Core Security Domains</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🔑</div>
+                        <h4 class="text-xl font-bold">Identity & Access</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Controls who can do what</p>
+                    <div class="threat-level threat-low">Protected</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">💻</div>
+                        <h4 class="text-xl font-bold">Application Security</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Protects code & APIs</p>
+                    <div class="threat-level threat-medium">Monitored</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">☁️</div>
+                        <h4 class="text-xl font-bold">Cloud Security</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Secures infrastructure</p>
+                    <div class="threat-level threat-low">Protected</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🔒</div>
+                        <h4 class="text-xl font-bold">Data Security</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Protects databases & PII</p>
+                    <div class="threat-level threat-high">Critical</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🤖</div>
+                        <h4 class="text-xl font-bold">AI Security</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Secures AI systems</p>
+                    <div class="threat-level threat-medium">Evolving</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">📦</div>
+                        <h4 class="text-xl font-bold">Supply Chain</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Secures dependencies</p>
+                    <div class="threat-level threat-medium">Scanning</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Security Examples -->
+        <section id="security-examples" class="mb-16">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">🔍 Interactive Security Examples</h3>
+            
+            <!-- Tabs for different security examples -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="flex border-b">
+                    <button onclick="showTab('authentication')" class="tab-button flex-1 py-4 px-6 text-left font-semibold">
+                        Authentication
+                    </button>
+                    <button onclick="showTab('xss')" class="tab-button flex-1 py-4 px-6 text-left font-semibold">
+                        XSS Prevention
+                    </button>
+                    <button onclick="showTab('database')" class="tab-button flex-1 py-4 px-6 text-left font-semibold">
+                        Database Security
+                    </button>
+                    <button onclick="showTab('ai')" class="tab-button flex-1 py-4 px-6 text-left font-semibold">
+                        AI Security
+                    </button>
+                </div>
+                
+                <!-- Authentication Tab -->
+                <div id="authentication" class="tab-content p-8">
+                    <h4 class="text-2xl font-bold mb-6">🔐 Authentication Security</h4>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">❌ Insecure Example</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-red-400">JavaScript</span>
+                                    <button onclick="copyCode('bad-auth')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="bad-auth">// BAD: Hardcoded credentials
+const user = {
+  username: "admin",
+  password: "password123" // ❌ Never do this!
+};
+
+// BAD: No validation
+function login(username, password) {
+  return user.username === username && 
+         user.password === password;
+}</pre>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h6 class="font-semibold text-red-800">⚠️ Security Issues:</h6>
+                                <ul class="text-red-700 mt-2 list-disc list-inside">
+                                    <li>Hardcoded passwords</li>
+                                    <li>No input validation</li>
+                                    <li>Plain text passwords</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">✅ Secure Example</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-green-400">JavaScript</span>
+                                    <button onclick="copyCode('good-auth')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="good-auth">// GOOD: Secure authentication
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+// GOOD: Hash passwords
+async function hashPassword(password) {
+  return await bcrypt.hash(password, 12);
+}
+
+// GOOD: Validate inputs
+function validateInput(input) {
+  const sanitized = input.trim();
+  if (sanitized.length < 8) {
+    throw new Error('Password too short');
+  }
+  return sanitized;
+}
+
+// GOOD: Use JWT tokens
+function generateToken(user) {
+  return jwt.sign(
+    { userId: user.id, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+}</pre>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h6 class="font-semibold text-green-800">✅ Security Benefits:</h6>
+                                <ul class="text-green-700 mt-2 list-disc list-inside">
+                                    <li>Password hashing</li>
+                                    <li>Input validation</li>
+                                    <li>JWT tokens</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Demo -->
+                    <div class="mt-8">
+                        <h5 class="text-xl font-semibold mb-4">🎮 Try It Yourself</h5>
+                        <div class="interactive-demo">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Username</label>
+                                    <input type="text" id="demoUsername" class="w-full p-3 border rounded-lg" placeholder="Enter username">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Password</label>
+                                    <input type="password" id="demoPassword" class="w-full p-3 border rounded-lg" placeholder="Enter password">
+                                </div>
+                            </div>
+                            <div class="mt-4 flex gap-4">
+                                <button onclick="testAuthentication()" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+                                    Test Login
+                                </button>
+                                <button onclick="clearDemo()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                                    Clear
+                                </button>
+                            </div>
+                            <div id="authResult" class="mt-4 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- XSS Prevention Tab -->
+                <div id="xss" class="tab-content p-8 hidden">
+                    <h4 class="text-2xl font-bold mb-6">🛡️ XSS Prevention</h4>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">❌ Vulnerable Code</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-red-400">React</span>
+                                    <button onclick="copyCode('bad-xss')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="bad-xss">// VULNERABLE: No sanitization
+function Comment({ content }) {
+  return (
+    &lt;div dangerouslySetInnerHTML={{ 
+      __html: content 
+    }} /&gt;  // ❌ Dangerous!
+  );
+}
+
+// VULNERABLE: Direct HTML insertion
+const userInput = "&lt;script&gt;alert('hack')&lt;/script&gt;";
+document.body.innerHTML = userInput;</pre>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">✅ Protected Code</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-green-400">React</span>
+                                    <button onclick="copyCode('good-xss')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="good-xss">// SECURE: Proper sanitization
+import DOMPurify from 'dompurify';
+
+function Comment({ content }) {
+  const sanitized = DOMPurify.sanitize(content);
+  return (
+    &lt;div dangerouslySetInnerHTML={{ 
+      __html: sanitized 
+    }} /&gt;  // ✅ Safe!
+  );
+}
+
+// SECURE: Text rendering
+function SafeText({ text }) {
+  return &lt;p&gt;{text}&lt;/p&gt;;  // ✅ Automatic escaping
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive XSS Demo -->
+                    <div class="mt-8">
+                        <h5 class="text-xl font-semibold mb-4">🎮 XSS Attack Simulator</h5>
+                        <div class="interactive-demo">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Enter text to render:</label>
+                                    <textarea id="xssInput" class="w-full p-3 border rounded-lg" rows="4" placeholder="Try: &lt;script&gt;alert('XSS')&lt;/script&gt;"></textarea>
+                                    <div class="mt-4 flex gap-2">
+                                        <button onclick="testXSS()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                                            Render Unsafely
+                                        </button>
+                                        <button onclick="testXSSSafe()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                                            Render Safely
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Output:</label>
+                                    <div id="xssOutput" class="w-full p-3 border rounded-lg min-h-32 bg-gray-50">
+                                        <em class="text-gray-500">Output will appear here...</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Database Security Tab -->
+                <div id="database" class="tab-content p-8 hidden">
+                    <h4 class="text-2xl font-bold mb-6">💾 Database Security with Prisma</h4>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">❌ Vulnerable SQL</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-red-400">SQL Injection</span>
+                                    <button onclick="copyCode('bad-sql')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="bad-sql">-- VULNERABLE: String concatenation
+const userId = "1' OR '1'='1";
+const query = `
+  SELECT * FROM users 
+  WHERE id = '${userId}'
+`;
+
+// This returns ALL users! 🚨</pre>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">✅ Secure Prisma</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-green-400">TypeScript</span>
+                                    <button onclick="copyCode('good-sql')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="good-sql">// SECURE: Prisma ORM
+const user = await prisma.user.findUnique({
+  where: { id: userId }  // ✅ Auto-parameterized
+});
+
+// SECURE: Query with validation
+const users = await prisma.user.findMany({
+  where: {
+    email: {
+      contains: searchTerm,
+      mode: 'insensitive'
+    }
+  },
+  select: {
+    id: true,
+    email: true,
+    name: true  // ✅ Only select needed fields
+  }
+});</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Security Tab -->
+                <div id="ai" class="tab-content p-8 hidden">
+                    <h4 class="text-2xl font-bold mb-6">🤖 AI & OpenAI Security</h4>
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-6">
+                        <h5 class="text-lg font-semibold text-yellow-800">⚠️ Unique AI Risks</h5>
+                        <ul class="text-yellow-700 mt-2 list-disc list-inside">
+                            <li>Prompt injection attacks</li>
+                            <li>Data leakage through responses</li>
+                            <li>Model hallucinations</li>
+                            <li>Adversarial inputs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">❌ Vulnerable AI Usage</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-red-400">Insecure</span>
+                                    <button onclick="copyCode('bad-ai')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="bad-ai">// VULNERABLE: Direct user input
+const response = await openai.chat.completions.create({
+  model: "gpt-3.5-turbo",
+  messages: [
+    { role: "user", content: userInput } // ❌ No validation!
+  ]
+});
+
+// VULNERABLE: Sensitive data in prompts
+const prompt = `
+  Analyze this customer data: ${customerData}
+  User: ${userInput}
+`;</pre>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-xl font-semibold mb-4">✅ Secure AI Implementation</h5>
+                            <div class="code-block mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-green-400">Secure</span>
+                                    <button onclick="copyCode('good-ai')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                                </div>
+                                <pre id="good-ai">// SECURE: Input sanitization
+function sanitizeAIInput(input) {
+  const blocked = ['ignore', 'forget', 'system'];
+  if (blocked.some(word => 
+    input.toLowerCase().includes(word)
+  )) {
+    throw new Error('Invalid input');
+  }
+  return input;
+}
+
+// SECURE: Controlled prompts
+const response = await openai.chat.completions.create({
+  model: "gpt-3.5-turbo",
+  messages: [
+    { 
+      role: "system", 
+      content: "You are a helpful assistant. 
+      Only answer questions about products." 
+    },
+    { 
+      role: "user", 
+      content: sanitizeAIInput(userInput) 
+    }
+  ],
+  max_tokens: 100,  // ✅ Limit response length
+  temperature: 0.1  // ✅ Reduce creativity
+});</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Use Cases -->
+        <section id="use-cases" class="mb-16">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">🌍 Real-World Use Cases</h3>
+            
+            <div class="space-y-8">
+                <!-- Use Case 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">📱 Use Case 1: E-commerce Platform</h4>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-red-800 mb-2">❌ Attack Scenario</h5>
+                            <p class="text-red-700 text-sm">Attacker exploits payment API to modify prices</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-green-800 mb-2">✅ Prevention</h5>
+                            <p class="text-green-700 text-sm">API rate limiting + price validation</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-blue-800 mb-2">🛡️ Tools Used</h5>
+                            <p class="text-blue-700 text-sm">AWS WAF, JWT tokens, HMAC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-blue-400">Implementation Example</span>
+                            <button onclick="copyCode('ecommerce')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                        </div>
+                        <pre id="ecommerce">// E-commerce Security Implementation
+app.post('/api/payment', authenticateUser, async (req, res) => {
+  // 1. Validate input
+  const { amount, productId } = req.body;
+  if (!amount || amount <= 0) {
+    return res.status(400).json({ error: 'Invalid amount' });
+  }
+  
+  // 2. Verify price from database (not client)
+  const product = await prisma.product.findUnique({
+    where: { id: productId },
+    select: { price: true }
+  });
+  
+  // 3. Check if amount matches
+  if (amount !== product.price) {
+    return res.status(403).json({ error: 'Price mismatch' });
+  }
+  
+  // 4. Process payment securely
+  const payment = await processSecurePayment(amount);
+  
+  // 5. Log for audit
+  await logSecurityEvent('payment', req.user.id, amount);
+});</pre>
+                    </div>
+                </div>
+                
+                <!-- Use Case 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">🏥 Use Case 2: Healthcare Application</h4>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-red-800 mb-2">❌ Attack Scenario</h5>
+                            <p class="text-red-700 text-sm">Unauthorized access to patient records</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-green-800 mb-2">✅ Prevention</h5>
+                            <p class="text-green-700 text-sm">Role-based access + encryption</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-blue-800 mb-2">🛡️ Compliance</h5>
+                            <p class="text-blue-700 text-sm">HIPAA compliant architecture</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-blue-400">Healthcare Security</span>
+                            <button onclick="copyCode('healthcare')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                        </div>
+                        <pre id="healthcare">// Healthcare Security Implementation
+class PatientDataAccess {
+  async getPatientData(patientId, userRole, userId) {
+    // 1. Check authorization
+    if (!(await this.isAuthorized(userRole, patientId, userId))) {
+      throw new Error('Unauthorized access attempt');
+    }
+    
+    // 2. Get patient data with encryption
+    const patient = await prisma.patient.findUnique({
+      where: { id: patientId },
+      select: {
+        id: true,
+        name: true,
+        medicalRecords: true // Encrypted at rest
+      }
+    });
+    
+    // 3. Log access for audit
+    await auditLog('patient_data_access', {
+      userId,
+      patientId,
+      timestamp: new Date(),
+      action: 'view'
+    });
+    
+    return patient;
+  }
+  
+  async isAuthorized(role, patientId, userId) {
+    // Check role-based permissions
+    const permissions = {
+      'doctor': ['view_medical_records', 'edit_treatment'],
+      'nurse': ['view_basic_info', 'edit_vitals'],
+      'patient': ['view_own_data']
+    };
+    
+    return permissions[role]?.includes('view_medical_records');
+  }
+}</pre>
+                    </div>
+                </div>
+                
+                <!-- Use Case 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">🏦 Use Case 3: FinTech Application</h4>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-red-800 mb-2">❌ Attack Scenario</h5>
+                            <p class="text-red-700 text-sm">Financial fraud through API manipulation</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-green-800 mb-2">✅ Prevention</h5>
+                            <p class="text-green-700 text-sm">Multi-factor auth + transaction limits</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="font-semibold text-blue-800 mb-2">🛡️ Compliance</h5>
+                            <p class="text-blue-700 text-sm">PCI DSS + SOX compliance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-blue-400">FinTech Security</span>
+                            <button onclick="copyCode('fintech')" class="text-xs bg-gray-700 px-2 py-1 rounded">Copy</button>
+                        </div>
+                        <pre id="fintech">// FinTech Security Implementation
+class TransactionSecurity {
+  async processTransaction(userId, amount, recipient) {
+    // 1. Verify MFA
+    if (!(await this.verifyMFA(userId))) {
+      throw new Error('MFA verification failed');
+    }
+    
+    // 2. Check transaction limits
+    const dailyLimit = await this.getDailyLimit(userId);
+    const currentSpending = await this.getDailySpending(userId);
+    
+    if (currentSpending + amount > dailyLimit) {
+      throw new Error('Transaction exceeds daily limit');
+    }
+    
+    // 3. Verify recipient
+    if (!(await this.verifyRecipient(userId, recipient))) {
+      throw new Error('Recipient verification failed');
+    }
+    
+    // 4. Process with fraud detection
+    const transaction = await this.createSecureTransaction(userId, amount, recipient);
+    
+    // 5. Real-time monitoring
+    await this.fraudDetection(userId, amount, recipient);
+    
+    return transaction;
+  }
+  
+  async fraudDetection(userId, amount, recipient) {
+    const riskScore = await calculateRiskScore({
+      userId,
+      amount,
+      recipient,
+      timeOfDay: new Date().getHours(),
+      location: await getUserLocation(userId)
+    });
+    
+    if (riskScore > 0.8) {
+      await flagTransaction(userId, 'HIGH_RISK_TRANSACTION');
+      throw new Error('Transaction flagged for review');
+    }
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section id="best-practices" class="mb-16">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">⭐ DevSecOps Best Practices</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Development Practices -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">💻 Development</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Code Reviews</h5>
+                                <p class="text-gray-600 text-sm">Always review code for security vulnerabilities</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Dependency Scanning</h5>
+                                <p class="text-gray-600 text-sm">Scan all third-party libraries for vulnerabilities</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Secret Management</h5>
+                                <p class="text-gray-600 text-sm">Never hardcode secrets in source code</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Input Validation</h5>
+                                <p class="text-gray-600 text-sm">Validate and sanitize all user inputs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Infrastructure Practices -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">☁️ Infrastructure</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Infrastructure as Code</h5>
+                                <p class="text-gray-600 text-sm">Version control all infrastructure changes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Network Segmentation</h5>
+                                <p class="text-gray-600 text-sm">Isolate services with firewalls and VPCs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Regular Updates</h5>
+                                <p class="text-gray-600 text-sm">Keep all systems and dependencies updated</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Backup & Recovery</h5>
+                                <p class="text-gray-600 text-sm">Regular automated backups with testing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Monitoring Practices -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">📊 Monitoring</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Real-time Monitoring</h5>
+                                <p class="text-gray-600 text-sm">Monitor security events and anomalies</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Log Analysis</h5>
+                                <p class="text-gray-600 text-sm">Centralized logging with SIEM integration</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Incident Response</h5>
+                                <p class="text-gray-600 text-sm">Automated alerts and response procedures</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Compliance Reporting</h5>
+                                <p class="text-gray-600 text-sm">Regular security audits and reports</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Practices -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold mb-6">👥 Team & Process</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Security Training</h5>
+                                <p class="text-gray-600 text-sm">Regular security awareness training</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Threat Modeling</h5>
+                                <p class="text-gray-600 text-sm">Regular threat analysis sessions</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Penetration Testing</h5>
+                                <p class="text-gray-600 text-sm">Regular security testing and assessments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mt-1">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold">Documentation</h5>
+                                <p class="text-gray-600 text-sm">Keep security documentation updated</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Quiz -->
+        <section id="quiz" class="mb-16">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">🎯 Security Knowledge Quiz</h3>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div id="quizContent">
+                    <div class="text-center mb-8">
+                        <h4 class="text-2xl font-bold mb-4">Test Your DevSecOps Knowledge</h4>
+                        <p class="text-gray-600">Answer these questions to test your understanding</p>
+                    </div>
+                    
+                    <div class="space-y-8" id="quizQuestions">
+                        <!-- Questions will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button onclick="submitQuiz()" class="bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition">
+                            Submit Quiz
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="quizResults" class="hidden">
+                    <div class="text-center mb-8">
+                        <h4 class="text-2xl font-bold mb-4">Quiz Results</h4>
+                        <div id="scoreDisplay" class="text-6xl font-bold mb-4"></div>
+                        <p id="resultMessage" class="text-xl"></p>
+                    </div>
+                    <div class="text-center">
+                        <button onclick="resetQuiz()" class="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prevention Checklist -->
+        <section id="prevention" class="mb-16">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">✅ Security Prevention Checklist</h3>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Authentication Checklist -->
+                    <div>
+                        <h4 class="text-xl font-bold mb-6 text-center">🔐 Authentication & Authorization</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-blue-600">
+                                <span>Multi-factor authentication enabled</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-blue-600">
+                                <span>Passwords hashed with bcrypt/Argon2</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-blue-600">
+                                <span>JWT tokens with expiration</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-blue-600">
+                                <span>Role-based access control (RBAC)</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-blue-600">
+                                <span>Session management implemented</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Application Security Checklist -->
+                    <div>
+                        <h4 class="text-xl font-bold mb-6 text-center">💻 Application Security</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-green-600">
+                                <span>Input validation and sanitization</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-green-600">
+                                <span>CSRF protection enabled</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-green-600">
+                                <span>Content Security Policy (CSP)</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-green-600">
+                                <span>SQL injection prevention</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-green-600">
+                                <span>XSS protection implemented</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Infrastructure Checklist -->
+                    <div>
+                        <h4 class="text-xl font-bold mb-6 text-center">☁️ Infrastructure Security</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-purple-600">
+                                <span>Network segmentation configured</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-purple-600">
+                                <span>Firewall rules properly configured</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-purple-600">
+                                <span>Encryption at rest and in transit</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-purple-600">
+                                <span>Regular security updates applied</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-purple-600">
+                                <span>Secrets managed securely</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Monitoring Checklist -->
+                    <div>
+                        <h4 class="text-xl font-bold mb-6 text-center">📊 Monitoring & Response</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-red-600">
+                                <span>Security event monitoring</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-red-600">
+                                <span>Log aggregation and analysis</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-red-600">
+                                <span>Automated incident response</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-red-600">
+                                <span>Regular security assessments</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-red-600">
+                                <span>Backup and disaster recovery</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h5 class="text-lg font-semibold mb-2">Checklist Progress</h5>
+                        <div class="progress-bar w-full max-w-md mx-auto mb-2">
+                            <div id="checklistProgress" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p id="checklistText" class="text-sm text-gray-600">0 of 20 items completed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-4">🎓 Ready to Implement DevSecOps?</h3>
+            <p class="text-lg mb-6">Start building secure applications today</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="scrollToSection('security-basics')" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Review Basics
+                </button>
+                <button onclick="startQuiz()" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                    Test Knowledge
+                </button>
+            </div>
+            <div class="mt-8 text-sm opacity-75">
+                <p>Built with ❤️ for DevSecOps Engineers | Interactive Security Learning Platform</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Quiz Questions
+        const quizQuestions = [
+            {
+                question: "What is the main principle of DevSecOps?",
+                options: [
+                    "Security should be added at the end of development",
+                    "Security should be integrated throughout the development process",
+                    "Security is solely the responsibility of the security team",
+                    "Security only applies to production environments"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which of these is the best practice for storing passwords?",
+                options: [
+                    "Store them in plain text for easy access",
+                    "Use MD5 hashing",
+                    "Use bcrypt or Argon2 with salt",
+                    "Encode them with base64"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does XSS stand for?",
+                options: [
+                    "XML Security Scanning",
+                    "Cross-Site Scripting",
+                    "Extended Security System",
+                    "Cross-Server Security"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the primary benefit of using an ORM like Prisma?",
+                options: [
+                    "Faster database queries",
+                    "Automatic SQL injection prevention",
+                    "Better performance",
+                    "Easier database administration"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which principle should you follow for access control?",
+                options: [
+                    "Give users maximum access to be helpful",
+                    "Follow the principle of least privilege",
+                    "Share passwords within teams",
+                    "Use default admin credentials"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is prompt injection in AI security?",
+                options: [
+                    "Injecting malicious prompts into AI systems",
+                    "A way to speed up AI processing",
+                    "A type of database attack",
+                    "A network protocol issue"
+                ],
+                correct: 0
+            },
+            {
+                question: "What should you do with sensitive data in AI prompts?",
+                options: [
+                    "Include it for better results",
+                    "Never include sensitive data",
+                    "Only include it for admin users",
+                    "Encode it first"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the main purpose of Infrastructure as Code (IaC)?",
+                options: [
+                    "To make infrastructure setup faster",
+                    "To version control infrastructure changes",
+                    "To reduce costs",
+                    "To improve performance"
+                ],
+                correct: 1
+            }
+        ];
+
+        // Initialize Quiz
+        function initializeQuiz() {
+            const quizContainer = document.getElementById('quizQuestions');
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'border-b border-gray-200 pb-6';
+                questionDiv.innerHTML = `
+                    <h5 class="text-lg font-semibold mb-4">${index + 1}. ${q.question}</h5>
+                    <div class="space-y-2">
+                        ${q.options.map((option, optionIndex) => `
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="q${index}" value="${optionIndex}" class="w-4 h-4 text-blue-600">
+                                <span>${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Submit Quiz
+        function submitQuiz() {
+            let score = 0;
+            quizQuestions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === q.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = Math.round((score / quizQuestions.length) * 100);
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resultMessage = document.getElementById('resultMessage');
+
+            scoreDisplay.textContent = `${percentage}%`;
+            
+            if (percentage >= 80) {
+                resultMessage.textContent = '🎉 Excellent! You have strong DevSecOps knowledge!';
+                resultMessage.className = 'text-xl text-green-600';
+            } else if (percentage >= 60) {
+                resultMessage.textContent = '👍 Good job! Keep learning DevSecOps concepts.';
+                resultMessage.className = 'text-xl text-blue-600';
+            } else {
+                resultMessage.textContent = '📚 Keep studying! Review the concepts and try again.';
+                resultMessage.className = 'text-xl text-orange-600';
+            }
+
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('quizResults').classList.remove('hidden');
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            document.getElementById('quizContent').classList.remove('hidden');
+            document.getElementById('quizResults').classList.add('hidden');
+            
+            // Clear all selections
+            quizQuestions.forEach((_, index) => {
+                const radios = document.querySelectorAll(`input[name="q${index}"]`);
+                radios.forEach(radio => radio.checked = false);
+            });
+        }
+
+        // Start Quiz
+        function startQuiz() {
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                document.getElementById('quizContent').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        // Component Details
+        function showComponentDetails(component) {
+            const details = {
+                user: {
+                    title: "👤 User Layer",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>HTTPS/TLS encryption</li>
+                            <li>User authentication</li>
+                            <li>Input validation</li>
+                            <li>Session management</li>
+                        </ul>
+                    `
+                },
+                cdn: {
+                    title: "🌐 CDN/Web Layer",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>DDoS protection</li>
+                            <li>Content Security Policy</li>
+                            <li>Bot protection</li>
+                            <li>SSL/TLS termination</li>
+                        </ul>
+                    `
+                },
+                app: {
+                    title: "⚛️ Application Layer",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Input sanitization</li>
+                            <li>CSRF protection</li>
+                            <li>Rate limiting</li>
+                            <li>Error handling</li>
+                        </ul>
+                    `
+                },
+                auth: {
+                    title: "🔐 Authentication",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Multi-factor authentication</li>
+                            <li>Password hashing</li>
+                            <li>JWT tokens</li>
+                            <li>Session management</li>
+                        </ul>
+                    `
+                },
+                api: {
+                    title: "🔌 API Layer",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>API key management</li>
+                            <li>Rate limiting</li>
+                            <li>Request validation</li>
+                            <li>Response filtering</li>
+                        </ul>
+                    `
+                },
+                database: {
+                    title: "💾 Database Layer",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Encrypted connections</li>
+                            <li>Query parameterization</li>
+                            <li>Access controls</li>
+                            <li>Backup encryption</li>
+                        </ul>
+                    `
+                },
+                cloud: {
+                    title: "☁️ Cloud Infrastructure",
+                    content: `
+                        <p class="mb-2"><strong>Security Measures:</strong></p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Network segmentation</li>
+                            <li>Firewall rules</li>
+                            <li>IAM policies</li>
+                            <li>Compliance monitoring</li>
+                        </ul>
+                    `
+                }
+            };
+
+            const detail = details[component];
+            if (detail) {
+                document.getElementById('componentTitle').textContent = detail.title;
+                document.getElementById('componentContent').innerHTML = detail.content;
+                document.getElementById('componentDetails').classList.remove('hidden');
+            }
+        }
+
+        // Tab Management
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Authentication Demo
+        function testAuthentication() {
+            const username = document.getElementById('demoUsername').value;
+            const password = document.getElementById('demoPassword').value;
+            const result = document.getElementById('authResult');
+            
+            if (!username || !password) {
+                result.innerHTML = '<div class="bg-yellow-50 p-4 rounded-lg"><p class="text-yellow-800">⚠️ Please enter both username and password</p></div>';
+                result.classList.remove('hidden');
+                return;
+            }
+            
+            // Simple validation simulation
+            if (username.length < 3 || password.length < 6) {
+                result.innerHTML = '<div class="bg-red-50 p-4 rounded-lg"><p class="text-red-800">❌ Invalid credentials format</p></div>';
+            } else {
+                result.innerHTML = '<div class="bg-green-50 p-4 rounded-lg"><p class="text-green-800">✅ Authentication successful (demo)</p></div>';
+            }
+            
+            result.classList.remove('hidden');
+        }
+
+        function clearDemo() {
+            document.getElementById('demoUsername').value = '';
+            document.getElementById('demoPassword').value = '';
+            document.getElementById('authResult').classList.add('hidden');
+        }
+
+        // XSS Demo
+        function testXSS() {
+            const input = document.getElementById('xssInput').value;
+            const output = document.getElementById('xssOutput');
+            
+            // UNSAFE: Direct HTML insertion (for demo purposes)
+            output.innerHTML = input;
+        }
+
+        function testXSSSafe() {
+            const input = document.getElementById('xssInput').value;
+            const output = document.getElementById('xssOutput');
+            
+            // SAFE: Text content (automatic escaping)
+            output.textContent = input;
+        }
+
+        // Copy Code Function
+        function copyCode(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Show feedback
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Scroll to Section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Progress Tracking
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const completed = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            const total = checkboxes.length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            document.getElementById('checklistProgress').style.width = percentage + '%';
+            document.getElementById('checklistText').textContent = `${completed} of ${total} items completed`;
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeQuiz();
+            
+            // Add checklist progress tracking
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            
+            // Add scroll progress tracking
+            window.addEventListener('scroll', updateScrollProgress);
+        });
+
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('progressBar').style.width = Math.min(scrollPercent, 100) + '%';
+            document.getElementById('progressText').textContent = Math.round(Math.min(scrollPercent, 100)) + '% Complete';
+        }
+    </script>
+</body>
+</html>
