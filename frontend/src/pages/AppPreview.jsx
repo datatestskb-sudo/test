@@ -102,7 +102,7 @@ export default function AppPreview() {
   const [loading, setLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContent, setFileContent] = useState(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(true); // Default to fullscreen
   const [activeTab, setActiveTab] = useState("preview");
   const [iframeKey, setIframeKey] = useState(0);
 
@@ -165,21 +165,26 @@ export default function AppPreview() {
   const iframeUrl = `${API}/apps/${appId}/serve/${app.entry_file}`;
 
   return (
-    <div className={`min-h-screen bg-background flex flex-col ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
-      {/* Header */}
-      <header className="preview-header sticky top-0 z-40 flex-shrink-0">
+    <div className="fixed inset-0 z-50 bg-background flex flex-col">
+      {/* Floating Header - Only visible on hover or when not fullscreen */}
+      <header 
+        className={`absolute top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isFullscreen 
+            ? 'opacity-0 hover:opacity-100 bg-background/95 backdrop-blur-md' 
+            : 'opacity-100 bg-background border-b border-border'
+        }`}
+      >
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-4">
-            {!isFullscreen && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => navigate('/')}
-                data-testid="back-button"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-            )}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              data-testid="back-button"
+              className="hover:bg-white/10"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                 <FileCode className="w-4 h-4 text-primary" />
@@ -214,7 +219,7 @@ export default function AppPreview() {
               variant="ghost"
               size="icon"
               onClick={() => setIsFullscreen(!isFullscreen)}
-              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+              title={isFullscreen ? "Show controls" : "Hide controls"}
               data-testid="toggle-fullscreen"
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -253,91 +258,106 @@ export default function AppPreview() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-h-0">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
-          <div className="px-4 border-b border-border">
-            <TabsList className="h-10 bg-transparent">
-              <TabsTrigger value="preview" className="data-[state=active]:bg-card" data-testid="tab-preview">
-                <Eye className="w-4 h-4 mr-2" />
-                Preview
-              </TabsTrigger>
-              <TabsTrigger value="code" className="data-[state=active]:bg-card" data-testid="tab-code">
-                <Code className="w-4 h-4 mr-2" />
-                Code
-                {selectedFile && (
-                  <span className="ml-2 text-xs text-muted-foreground font-mono">
-                    {selectedFile.name}
-                  </span>
-                )}
-              </TabsTrigger>
-            </TabsList>
+      {/* Main Content - Full viewport iframe */}
+      <div className="flex-1 flex flex-col w-full h-full">
+        {isFullscreen ? (
+          /* Pure fullscreen preview - iframe takes entire viewport */
+          <div className="w-full h-full bg-white">
+            <iframe
+              key={iframeKey}
+              src={iframeUrl}
+              title={app.name}
+              className="w-full h-full border-0"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+              data-testid="app-iframe"
+            />
           </div>
-
-          <TabsContent value="preview" className="flex-1 m-0 p-4">
-            <div className="iframe-container h-full" data-testid="preview-container">
-              <iframe
-                key={iframeKey}
-                src={iframeUrl}
-                title={app.name}
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
-                data-testid="app-iframe"
-              />
+        ) : (
+          /* Normal view with tabs */
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col pt-14">
+            <div className="px-4 border-b border-border">
+              <TabsList className="h-10 bg-transparent">
+                <TabsTrigger value="preview" className="data-[state=active]:bg-card" data-testid="tab-preview">
+                  <Eye className="w-4 h-4 mr-2" />
+                  Preview
+                </TabsTrigger>
+                <TabsTrigger value="code" className="data-[state=active]:bg-card" data-testid="tab-code">
+                  <Code className="w-4 h-4 mr-2" />
+                  Code
+                  {selectedFile && (
+                    <span className="ml-2 text-xs text-muted-foreground font-mono">
+                      {selectedFile.name}
+                    </span>
+                  )}
+                </TabsTrigger>
+              </TabsList>
             </div>
-          </TabsContent>
 
-          <TabsContent value="code" className="flex-1 m-0 overflow-hidden">
-            {selectedFile ? (
-              <div className="h-full flex flex-col">
-                <div className="px-4 py-2 border-b border-border flex items-center justify-between bg-card">
-                  <div className="flex items-center gap-2">
-                    <FileIcon name={selectedFile.name} isFolder={false} />
-                    <span className="text-sm font-mono">{selectedFile.path}</span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => {
-                      setSelectedFile(null);
-                      setFileContent(null);
-                    }}
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
-                <ScrollArea className="flex-1">
-                  <div className="code-viewer">
-                    {fileContent?.type === 'text' ? (
-                      <pre className="text-sm text-foreground whitespace-pre-wrap break-all">
-                        {fileContent.content}
-                      </pre>
-                    ) : fileContent?.type === 'binary' ? (
-                      <div className="p-8 text-center text-muted-foreground">
-                        <FileCode className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                        <p>Binary file - cannot display</p>
-                      </div>
-                    ) : fileContent?.type === 'error' ? (
-                      <div className="p-8 text-center text-destructive">
-                        <p>{fileContent.message}</p>
-                      </div>
-                    ) : (
-                      <div className="p-8 text-center text-muted-foreground">
-                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-                      </div>
-                    )}
-                  </div>
-                </ScrollArea>
+            <TabsContent value="preview" className="flex-1 m-0 p-4">
+              <div className="iframe-container h-full" data-testid="preview-container">
+                <iframe
+                  key={iframeKey}
+                  src={iframeUrl}
+                  title={app.name}
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+                  data-testid="app-iframe"
+                />
               </div>
-            ) : (
-              <div className="h-full flex items-center justify-center text-muted-foreground">
-                <div className="text-center">
-                  <FolderOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>Select a file from the Files panel to view its content</p>
+            </TabsContent>
+
+            <TabsContent value="code" className="flex-1 m-0 overflow-hidden">
+              {selectedFile ? (
+                <div className="h-full flex flex-col">
+                  <div className="px-4 py-2 border-b border-border flex items-center justify-between bg-card">
+                    <div className="flex items-center gap-2">
+                      <FileIcon name={selectedFile.name} isFolder={false} />
+                      <span className="text-sm font-mono">{selectedFile.path}</span>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => {
+                        setSelectedFile(null);
+                        setFileContent(null);
+                      }}
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <ScrollArea className="flex-1">
+                    <div className="code-viewer">
+                      {fileContent?.type === 'text' ? (
+                        <pre className="text-sm text-foreground whitespace-pre-wrap break-all">
+                          {fileContent.content}
+                        </pre>
+                      ) : fileContent?.type === 'binary' ? (
+                        <div className="p-8 text-center text-muted-foreground">
+                          <FileCode className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                          <p>Binary file - cannot display</p>
+                        </div>
+                      ) : fileContent?.type === 'error' ? (
+                        <div className="p-8 text-center text-destructive">
+                          <p>{fileContent.message}</p>
+                        </div>
+                      ) : (
+                        <div className="p-8 text-center text-muted-foreground">
+                          <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+                        </div>
+                      )}
+                    </div>
+                  </ScrollArea>
                 </div>
-              </div>
-            )}
-          </TabsContent>
-        </Tabs>
+              ) : (
+                <div className="h-full flex items-center justify-center text-muted-foreground">
+                  <div className="text-center">
+                    <FolderOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                    <p>Select a file from the Files panel to view its content</p>
+                  </div>
+                </div>
+              )}
+            </TabsContent>
+          </Tabs>
+        )}
       </div>
     </div>
   );
