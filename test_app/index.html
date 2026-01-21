@@ -1,20 +1,731 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Test App</title>
-  <style>
-    body { font-family: Arial; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #1a1a2e; color: white; }
-    .container { text-align: center; }
-    h1 { color: #4CAF50; }
-    button { background: #4CAF50; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; }
-    button:hover { background: #45a049; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Industry Trends 2025-2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#3b82f6',
+                        highlight: '#60a5fa'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <div class="container">
-    <h1>Hello from Test App!</h1>
-    <p>This is a sample frontend project</p>
-    <button onclick="alert('Button clicked!')">Click Me</button>
-  </div>
+<body class="bg-primary text-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-secondary py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-center">
+                <i class="fas fa-shield-alt mr-3 text-accent"></i>DevSecOps Industry Trends 2025-2026
+            </h1>
+            <p class="text-center mt-2 text-gray-300">Essential Knowledge for Modern Security Engineers</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Introduction -->
+        <section class="mb-12 bg-secondary rounded-xl p-6 shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-accent">Understanding the Evolving Landscape</h2>
+            <p class="mb-4">
+                As we move into 2025-2026, DevSecOps engineers face new challenges and opportunities driven by technological advances and evolving threats. 
+                This guide explores the four major trends reshaping the field and provides practical insights for professionals.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div class="bg-slate-800 p-4 rounded-lg">
+                    <h3 class="font-bold text-highlight mb-2">Who Should Read This?</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>DevSecOps Engineers</li>
+                        <li>Security Professionals</li>
+                        <li>Cloud Architects</li>
+                        <li>Development Teams</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-lg">
+                    <h3 class="font-bold text-highlight mb-2">What You'll Learn</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Key industry trends for 2025-2026</li>
+                        <li>Real-world use cases and examples</li>
+                        <li>Practical implementation strategies</li>
+                        <li>Best practices for each trend</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trend Sections -->
+        <div id="trend-container" class="space-y-10">
+            <!-- Trend 1: AI/ML-Powered Security -->
+            <section class="bg-secondary rounded-xl p-6 shadow-lg trend-section">
+                <div class="flex items-start">
+                    <div class="mr-4 mt-1 text-accent">
+                        <i class="fas fa-brain text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold mb-2">1. AI/ML-Powered Security</h2>
+                        <p class="text-gray-300 mb-4">
+                            Leveraging artificial intelligence and machine learning to enhance security operations through intelligent automation and predictive capabilities.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Key Components</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Anomaly detection and automated incident response</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Predictive threat modeling</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Log analysis at scale using NLP</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Impact on DevSecOps</h3>
+                                <p>
+                                    Engineers need basic AI/ML understanding for security operations. Traditional signature-based approaches are being supplemented 
+                                    with intelligent systems that can adapt to new threats in real-time.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-slate-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-highlight mb-3">Interactive Demo: Anomaly Detection</h3>
+                            <div class="bg-black p-4 rounded mb-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>Network Traffic Pattern Analysis</span>
+                                    <button id="run-demo-1" class="bg-accent hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        Run Simulation
+                                    </button>
+                                </div>
+                                <div id="demo-output-1" class="font-mono text-sm h-32 overflow-auto bg-gray-900 p-3 rounded">
+                                    Click "Run Simulation" to see anomaly detection in action...
+                                </div>
+                            </div>
+                            <p>
+                                This simulation shows how ML models can detect unusual patterns that might indicate a security threat. 
+                                In practice, these systems analyze millions of data points to identify potential breaches.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Real-World Use Case</h3>
+                                <p>
+                                    A financial services company implemented ML-powered log analysis to detect fraudulent transactions. 
+                                    The system reduced false positives by 75% while identifying previously undetected fraud patterns.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Best Practices</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Start with supervised learning for known threats</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Continuously retrain models with new data</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Combine AI insights with human expertise</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Trend 2: Software Supply Chain Security -->
+            <section class="bg-secondary rounded-xl p-6 shadow-lg trend-section">
+                <div class="flex items-start">
+                    <div class="mr-4 mt-1 text-accent">
+                        <i class="fas fa-link text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold mb-2">2. Software Supply Chain Security</h2>
+                        <p class="text-gray-300 mb-4">
+                            Protecting the entire software development lifecycle from vulnerabilities introduced through third-party components and dependencies.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Key Components</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>SLSA framework adoption (Levels 1-4)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Software Bill of Materials (SBOM) for all artifacts</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Signed artifact verification</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Impact on DevSecOps</h3>
+                                <p>
+                                    Critical for modern DevSecOps roles. Engineers must verify every component entering their pipeline and maintain 
+                                    transparency about all software dependencies throughout the development process.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-slate-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-highlight mb-3">Interactive Demo: SBOM Visualization</h3>
+                            <div class="bg-black p-4 rounded mb-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>Sample Project Dependencies</span>
+                                    <button id="run-demo-2" class="bg-accent hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        Generate SBOM
+                                    </button>
+                                </div>
+                                <div id="demo-output-2" class="font-mono text-sm h-40 overflow-auto bg-gray-900 p-3 rounded">
+                                    Click "Generate SBOM" to visualize software dependencies...
+                                </div>
+                            </div>
+                            <p>
+                                This visualization represents how an SBOM reveals all dependencies in a software project. 
+                                In real scenarios, this helps identify vulnerable components and licensing issues.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Real-World Use Case</h3>
+                                <p>
+                                    After the SolarWinds attack, a healthcare organization implemented SLSA Level 3 for all builds. 
+                                    They now require provenance for all artifacts and automatically reject unsigned components, 
+                                    significantly reducing supply chain risks.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Best Practices</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Automate SBOM generation in CI/CD pipelines</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Implement policy-as-code for dependency validation</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Regularly scan dependencies for known vulnerabilities</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Trend 3: Zero Trust Architecture -->
+            <section class="bg-secondary rounded-xl p-6 shadow-lg trend-section">
+                <div class="flex items-start">
+                    <div class="mr-4 mt-1 text-accent">
+                        <i class="fas fa-user-lock text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold mb-2">3. Zero Trust Architecture</h2>
+                        <p class="text-gray-300 mb-4">
+                            A security model that assumes no implicit trust and continuously validates every request, regardless of origin.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Key Components</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Identity-first security model</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Micro-segmentation at scale</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Continuous verification, never implicit trust</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Impact on DevSecOps</h3>
+                                <p>
+                                    Fundamental shift in how security is architected. Engineers must implement fine-grained access controls, 
+                                    continuous authentication, and network segmentation as core infrastructure principles.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-slate-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-highlight mb-3">Interactive Demo: Access Control Simulation</h3>
+                            <div class="bg-black p-4 rounded mb-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>User Access Request</span>
+                                    <button id="run-demo-3" class="bg-accent hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        Simulate Request
+                                    </button>
+                                </div>
+                                <div id="demo-output-3" class="font-mono text-sm h-32 overflow-auto bg-gray-900 p-3 rounded">
+                                    Click "Simulate Request" to test zero-trust access control...
+                                </div>
+                            </div>
+                            <p>
+                                This simulation demonstrates how zero-trust architecture validates every access request. 
+                                Each request undergoes multiple checks before granting access to resources.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Real-World Use Case</h3>
+                                <p>
+                                    A global tech company migrated to zero-trust after a breach exposed internal network vulnerabilities. 
+                                    By implementing micro-segmentation and continuous verification, they reduced lateral movement risks 
+                                    and improved compliance with regulatory requirements.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Best Practices</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Implement least-privilege access policies</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Encrypt all communications, even internal traffic</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Monitor and log all access attempts</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Trend 4: Cloud-Native Application Protection -->
+            <section class="bg-secondary rounded-xl p-6 shadow-lg trend-section">
+                <div class="flex items-start">
+                    <div class="mr-4 mt-1 text-accent">
+                        <i class="fas fa-cloud text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold mb-2">4. Cloud-Native Application Protection (CNAPP)</h2>
+                        <p class="text-gray-300 mb-4">
+                            Comprehensive security solutions designed specifically for cloud-native environments including containers and orchestration platforms.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Key Components</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Runtime security monitoring</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Container behavior analysis</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>Workload vulnerability scanning</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Impact on DevSecOps</h3>
+                                <p>
+                                    New tools and approaches for container security. Engineers must secure dynamic, ephemeral workloads 
+                                    rather than static infrastructure, requiring different skill sets and toolchains.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-slate-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-highlight mb-3">Interactive Demo: Container Security Scan</h3>
+                            <div class="bg-black p-4 rounded mb-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>Docker Image Vulnerability Scan</span>
+                                    <button id="run-demo-4" class="bg-accent hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                                        Scan Image
+                                    </button>
+                                </div>
+                                <div id="demo-output-4" class="font-mono text-sm h-40 overflow-auto bg-gray-900 p-3 rounded">
+                                    Click "Scan Image" to check container vulnerabilities...
+                                </div>
+                            </div>
+                            <p>
+                                This simulation shows how CNAPP tools scan container images for vulnerabilities. 
+                                Real implementations integrate with CI/CD pipelines to prevent vulnerable images from deployment.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Real-World Use Case</h3>
+                                <p>
+                                    An e-commerce platform adopted CNAPP to secure their Kubernetes environment. 
+                                    The solution identified runtime anomalies that indicated a compromised container, 
+                                    automatically isolating it before it could affect customer data.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-slate-800 p-4 rounded-lg">
+                                <h3 class="font-bold text-highlight mb-3">Best Practices</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Integrate security into container build process</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Monitor runtime behavior for anomalies</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Implement network policies for container communication</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Quiz Section -->
+        <section class="mt-12 bg-secondary rounded-xl p-6 shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-center text-accent">Test Your Knowledge</h2>
+            <div id="quiz-container" class="max-w-2xl mx-auto">
+                <div id="question-container" class="mb-6">
+                    <h3 class="text-xl font-semibold mb-4" id="question-text">Loading question...</h3>
+                    <div id="answers-container" class="space-y-3">
+                        <!-- Answers will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button id="prev-question" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50">
+                        Previous
+                    </button>
+                    <div id="question-counter" class="text-gray-300">Question 1 of 4</div>
+                    <button id="next-question" class="bg-accent hover:bg-blue-700 text-white px-4 py-2 rounded">
+                        Next
+                    </button>
+                </div>
+                <div id="quiz-result" class="mt-6 text-center hidden">
+                    <h3 class="text-2xl font-bold mb-2">Quiz Complete!</h3>
+                    <p class="text-xl mb-4">Your score: <span id="score-value" class="text-accent font-bold">0</span>/4</p>
+                    <button id="restart-quiz" class="bg-accent hover:bg-blue-700 text-white px-4 py-2 rounded">
+                        Restart Quiz
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary py-6 mt-12 border-t border-slate-700">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>DevSecOps Industry Trends Guide • Updated for 2025-2026</p>
+            <p class="mt-2 text-sm">Interactive Learning Resource for Security Professionals</p>
+        </div>
+    </footer>
+
+    <script>
+        // Demo functionality
+        document.getElementById('run-demo-1').addEventListener('click', function() {
+            const output = document.getElementById('demo-output-1');
+            output.innerHTML = '';
+            
+            const events = [
+                "Analyzing network traffic patterns...",
+                "Baseline established: Normal traffic = 1,200 requests/sec",
+                "Detecting anomalies...",
+                "⚠️ ALERT: Spike detected - 5,400 requests/sec from unknown IP",
+                "Cross-referencing with threat intelligence...",
+                "⛔ BLOCKING suspicious traffic source",
+                "Generating incident report..."
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < events.length) {
+                    output.innerHTML += events[i] + '<br>';
+                    output.scrollTop = output.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 800);
+        });
+        
+        document.getElementById('run-demo-2').addEventListener('click', function() {
+            const output = document.getElementById('demo-output-2');
+            output.innerHTML = '';
+            
+            const sbomData = `
+Project: web-app-v2.1.5
+Generated: 2025-03-15
+Total Dependencies: 87
+
+DIRECT DEPENDENCIES:
+├── express@4.18.2
+├── mongoose@6.8.4
+├── react@18.2.0
+└── webpack@5.75.0
+
+VULNERABILITIES FOUND:
+├── HIGH: Prototype Pollution in lodash@4.17.20
+│   └── Used by: express → lodash
+├── MEDIUM: Regular Expression Denial of Service in trim@0.0.1
+│   └── Used by: react-scripts → trim
+└── LOW: Information Exposure in debug@2.6.9
+    └── Used by: mongoose → debug
+    
+RECOMMENDATIONS:
+1. Upgrade lodash to version >=4.17.21
+2. Replace trim with alternative package
+3. Update debug to latest version
+            `;
+            
+            output.textContent = sbomData;
+        });
+        
+        document.getElementById('run-demo-3').addEventListener('click', function() {
+            const output = document.getElementById('demo-output-3');
+            output.innerHTML = '';
+            
+            const steps = [
+                "User: alice.developer@company.com requesting access to /api/database",
+                "🔍 STEP 1: Authenticating user credentials...",
+                "✅ Authentication successful",
+                "🔍 STEP 2: Checking device compliance...",
+                "✅ Device meets security requirements",
+                "🔍 STEP 3: Validating user permissions...",
+                "⛔ ACCESS DENIED: User lacks database access privileges",
+                "📝 Logging access attempt for audit purposes..."
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < steps.length) {
+                    output.innerHTML += steps[i] + '<br>';
+                    output.scrollTop = output.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 600);
+        });
+        
+        document.getElementById('run-demo-4').addEventListener('click', function() {
+            const output = document.getElementById('demo-output-4');
+            output.innerHTML = '';
+            
+            const scanResults = `
+Scanning image: myapp:latest
+Base OS: Alpine Linux 3.16
+Size: 127MB
+
+🔍 VULNERABILITY SCAN RESULTS:
+HIGH SEVERITY (2):
+- CVE-2023-1255: OpenSSL vulnerability in libssl1.1
+  Risk: Potential remote code execution
+  Fixed in: 1.1.1t-r0
+  
+- CVE-2023-2345: Node.js HTTP request smuggling
+  Risk: Data exposure and bypass of security controls
+  Fixed in: 18.12.2
+
+MEDIUM SEVERITY (4):
+- CVE-2023-1111: Out-of-bounds read in cURL
+- CVE-2023-2222: Improper certificate validation
+- CVE-2023-3333: Weak encryption algorithm usage
+- CVE-2023-4444: Insufficient logging in authentication
+
+LOW SEVERITY (7):
+- Various informational findings...
+
+RECOMMENDATIONS:
+1. Rebuild image with updated base OS
+2. Upgrade Node.js to version >=18.12.2
+3. Update all packages to latest versions
+            `;
+            
+            let i = 0;
+            const lines = scanResults.split('\n');
+            const interval = setInterval(() => {
+                if (i < lines.length) {
+                    output.innerHTML += lines[i] + '<br>';
+                    output.scrollTop = output.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 300);
+        });
+        
+        // Quiz functionality
+        const quizData = [
+            {
+                question: "Which of these is NOT a key component of AI/ML-Powered Security?",
+                answers: [
+                    "Anomaly detection and automated incident response",
+                    "Predictive threat modeling",
+                    "Manual signature-based virus scanning",
+                    "Log analysis at scale using NLP"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does SLSA stand for in supply chain security?",
+                answers: [
+                    "Software Lifecycle Security Assessment",
+                    "Supply Chain Levels for Software Artifacts",
+                    "Secure Layered Software Architecture",
+                    "Systematic Log Security Analysis"
+                ],
+                correct: 1
+            },
+            {
+                question: "In Zero Trust Architecture, which principle is fundamental?",
+                answers: [
+                    "Trust but verify",
+                    "Verify occasionally",
+                    "Never trust, always verify",
+                    "Trust internal networks implicitly"
+                ],
+                correct: 2
+            },
+            {
+                question: "Which of these is a key component of CNAPP?",
+                answers: [
+                    "Physical server monitoring",
+                    "Container behavior analysis",
+                    "Traditional firewall management",
+                    "Static application scanning"
+                ],
+                correct: 1
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let score = 0;
+        const selectedAnswers = Array(quizData.length).fill(null);
+        
+        function loadQuestion() {
+            const question = quizData[currentQuestion];
+            document.getElementById('question-text').textContent = question.question;
+            document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+            
+            const answersContainer = document.getElementById('answers-container');
+            answersContainer.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const answerElement = document.createElement('div');
+                answerElement.className = 'p-3 rounded cursor-pointer hover:bg-slate-700 transition';
+                if (selectedAnswers[currentQuestion] === index) {
+                    answerElement.classList.add('bg-blue-900', 'border', 'border-blue-700');
+                }
+                
+                answerElement.innerHTML = `
+                    <label class="flex items-center">
+                        <input type="radio" name="answer" class="mr-2" ${selectedAnswers[currentQuestion] === index ? 'checked' : ''}>
+                        <span>${answer}</span>
+                    </label>
+                `;
+                
+                answerElement.addEventListener('click', () => {
+                    selectedAnswers[currentQuestion] = index;
+                    document.querySelectorAll('#answers-container > div').forEach(el => {
+                        el.classList.remove('bg-blue-900', 'border', 'border-blue-700');
+                    });
+                    answerElement.classList.add('bg-blue-900', 'border', 'border-blue-700');
+                });
+                
+                answersContainer.appendChild(answerElement);
+            });
+            
+            document.getElementById('prev-question').disabled = currentQuestion === 0;
+            document.getElementById('next-question').textContent = currentQuestion === quizData.length - 1 ? 'Finish' : 'Next';
+        }
+        
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                // Finish quiz
+                calculateScore();
+                document.getElementById('question-container').classList.add('hidden');
+                document.getElementById('quiz-result').classList.remove('hidden');
+            }
+        });
+        
+        document.getElementById('prev-question').addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        });
+        
+        document.getElementById('restart-quiz').addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            selectedAnswers.fill(null);
+            document.getElementById('question-container').classList.remove('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            loadQuestion();
+        });
+        
+        function calculateScore() {
+            score = 0;
+            quizData.forEach((question, index) => {
+                if (selectedAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+            document.getElementById('score-value').textContent = score;
+        }
+        
+        // Initialize quiz
+        loadQuestion();
+    </script>
 </body>
 </html>
