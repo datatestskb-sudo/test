@@ -1,34 +1,64 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #0f0f10;
+/* App-specific styles */
+.App {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
 }
 
-.App-link {
+/* Empty state illustration */
+.empty-state-bg {
+    background: radial-gradient(circle at center, hsl(var(--primary) / 0.1) 0%, transparent 70%);
+}
+
+/* Preview header glass effect */
+.preview-header {
+    background: hsl(var(--background) / 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+/* File explorer sidebar */
+.file-sidebar {
+    background: hsl(var(--card));
+    border-right: 1px solid hsl(var(--border));
+}
+
+/* Code viewer */
+.code-viewer {
+    background: hsl(var(--background));
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.code-viewer pre {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+/* Framework badges */
+.framework-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+}
+
+/* App card framework colors */
+.framework-react {
     color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.framework-vue {
+    color: #42b883;
+}
+
+.framework-angular {
+    color: #dd1b16;
+}
+
+.framework-svelte {
+    color: #ff3e00;
+}
+
+.framework-html {
+    color: #e34c26;
 }
